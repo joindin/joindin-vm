@@ -1,0 +1,10 @@
+.buildpath
+.cache
+.project
+.settings
+build/
+nbproject/
+*.kpf
+.idea
+.DS_Store
+.vagrant
