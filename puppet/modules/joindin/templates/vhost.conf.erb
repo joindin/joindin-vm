@@ -1,0 +1,73 @@
+# File Managed by Puppet. Do not modify!
+
+<VirtualHost *:<%= port %>>
+    ServerAdmin webmaster@<%= name %>
+    DocumentRoot <%= docroot %>joind.in/src
+    ServerName <%= name %>
+<% if serveraliases != "" -%>
+    ServerAlias <%= serveraliases %>
+<% end -%>
+    ErrorLog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-error_log
+    CustomLog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-access_log common
+    SetEnv JOINDIN_DEBUG on
+
+	<Directory <%= docroot %>>joind.in/src>
+                <IfModule mod_rewrite.c>
+                        Options +FollowSymLinks
+                </IfModule>
+
+               Options +Indexes +ExecCGI
+               DirectoryIndex index.php
+               AllowOverride All
+
+                Order allow,deny
+                Allow from all
+   </Directory>
+
+</VirtualHost>
+
+<virtualhost *:<%= port %>>
+    documentroot <%= docroot %>joindin-api/src/public/
+    servername api.<%= name %>
+
+    errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-error_log
+    customlog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-access_log common
+    setenv joindin_debug on
+
+	<directory <%= docroot %>>joindin-api/src/public/>
+                <ifmodule mod_rewrite.c>
+                        options +followsymlinks
+                </ifmodule>
+
+               options +indexes +execcgi
+               directoryindex index.php
+               allowoverride all
+
+                order allow,deny
+                allow from all
+   </directory>
+
+</virtualhost>
+
+<virtualhost *:<%= port %>>
+    documentroot <%= docroot %>joindin-web2/web
+    servername web2.<%= name %>
+
+    errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-error_log
+    customlog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-access_log common
+    setenv joindin_debug on
+
+   <directory <%= docroot %>joindin-web2/web>
+                <ifmodule mod_rewrite.c>
+                        options +followsymlinks
+                </ifmodule>
+
+               options +indexes +execcgi
+               directoryindex index.php
+               allowoverride all
+
+                order allow,deny
+                allow from all
+   </directory>
+
+</virtualhost>
