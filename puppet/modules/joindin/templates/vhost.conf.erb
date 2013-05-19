@@ -11,7 +11,7 @@
     CustomLog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-access_log common
     SetEnv JOINDIN_DEBUG on
 
-	<Directory <%= docroot %>>joind.in/src>
+	<Directory <%= docroot %>joind.in/src>
                 <IfModule mod_rewrite.c>
                         Options +FollowSymLinks
                 </IfModule>
@@ -34,7 +34,7 @@
     customlog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-access_log common
     setenv joindin_debug on
 
-	<directory <%= docroot %>>joindin-api/src/public/>
+	<directory <%= docroot %>joindin-api/src/public/>
                 <ifmodule mod_rewrite.c>
                         options +followsymlinks
                 </ifmodule>
