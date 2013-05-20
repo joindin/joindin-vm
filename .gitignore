@@ -1,0 +1,14 @@
+.buildpath
+.cache
+.project
+.settings
+build/
+nbproject/
+*.kpf
+.idea
+.DS_Store
+.vagrant
+joind.in/
+joindin-api/
+joindin-web2/
+Guardfile
