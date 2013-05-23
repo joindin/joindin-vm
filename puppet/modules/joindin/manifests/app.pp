@@ -1,12 +1,22 @@
 class joindin::app {
-
     # Initialize database structure
-    exec { 'patch-db':
+    exec { 'init-db':
         creates => '/tmp/.patched',
         command => "/vagrant/joindin-api/scripts/patchdb.sh \
                     -t /vagrant/joindin-api -d ${params::dbname} -u ${params::dbuser} \
                     -p ${params::dbpass} -i && touch /tmp/.patched",
         require => Exec['create-db'],
+    }
+
+    # Patch database structure
+    exec { 'patch-db':
+        command => "/vagrant/joindin-api/scripts/patchdb.sh \
+                    -t /vagrant/joindin-api -d ${params::dbname} -u ${params::dbuser} \
+                    -p ${params::dbpass}",
+        require => [
+            Exec['create-db'],
+            Exec['init-db'],
+        ],
     }
 
     # Generate seed data
