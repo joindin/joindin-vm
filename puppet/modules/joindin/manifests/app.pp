@@ -1,4 +1,5 @@
 class joindin::app {
+
     # Initialize database structure
     exec { 'init-db':
         creates => '/tmp/.patched',
@@ -25,7 +26,7 @@ class joindin::app {
         command => 'php /vagrant/joindin-api/tools/dbgen/generate.php > /tmp/seed.sql',
         require => [
 	    Package['php'],
-	    Exec['patch-db'],
+	    Exec['init-db'],
 	]
     }
 
@@ -34,7 +35,7 @@ class joindin::app {
         creates => '/tmp/.seeded',
         command => "mysql ${params::dbname} < /tmp/seed.sql && touch /tmp/.seeded",
         require => [
-                       Exec['patch-db'],
+                       Exec['init-db'],
                        Exec['seed-data'],
                    ],
     }
