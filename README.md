@@ -13,11 +13,11 @@ This repository provides a vagrant virtual machine so you can start contributing
 	- [joindin-vm](https://github.com/joindin/joindin-vm)
 1. Clone joindin-vm 
 
-    git clone git@github.com:%YourGitHubId/joindin-vm.git --recursive
+		git clone git@github.com:%%YourGitHubId%%/joindin-vm.git --recursive
 
 1. Execute the script that will clone the other 3 repository from your forks
 
-    php scripts/cloneRepository.php
+		php scripts/cloneRepository.php
 
 
 1. Start the VM
