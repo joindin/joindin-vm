@@ -1,5 +1,6 @@
 class joindin::web {
     include apache
+	include mongodb
 
     # include phpmyadmin if needed
     if $params::phpmyadmin == true {
@@ -16,7 +17,7 @@ class joindin::web {
 
     # Install PHP modules
     php::module { 'mysql': }
-    php::module { "pecl-xdebug" :
+    php::module { ["pecl-xdebug", "pecl-mongo"] :
         require => File["EpelRepo"],            # xdebug is in the epel repo
     }
 
