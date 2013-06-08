@@ -43,7 +43,6 @@ This repository provides a vagrant virtual machine so you can start contributing
 
 
 ## TODO
-- Automate the configuration changes
 - Check if a fork exists for the user. Use the joind.in repo if not
 - Complete this Readme
 - Remove the VM from the other repos
