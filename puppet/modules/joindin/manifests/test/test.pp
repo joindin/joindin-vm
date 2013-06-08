@@ -98,6 +98,10 @@ class joindin::test::test {
 
     # Announce test-suite
     notify { 'test':
-      message => 'Test-suite ready - run in VM with `cd /vagrant && phing',
+      message => 'Test-suite ready - run in VM with 
+          `cd /vagrant/joind.in && phing`
+          `cd /vagrant/joindin-api && phing`
+          `cd /vagrant/joindin-web2 && phing`
+      ',
     }
 }
