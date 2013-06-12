@@ -39,6 +39,10 @@ This repository provides a vagrant virtual machine so you can start contributing
 	- For the joind.in site: http://dev.joind.in:8080/
 	- For the responsive site: http://web2.dev.joind.in:8080/
 	- For the API: http://api.dev.joind.in:8080/
+1. You can log to joind.in test site with those credentials for an admin account:
+		* Username: imaadmin
+		* Password: password
+1. For other users, [look at the dbgen documentation.](https://github.com/joindin/joindin-api/tree/master/tools/dbgen#usernames-and-passwords)
 
 
 ## Running the tests
