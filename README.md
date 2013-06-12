@@ -13,11 +13,11 @@ This repository provides a vagrant virtual machine so you can start contributing
 	- [joindin-vm](https://github.com/joindin/joindin-vm)
 1. Clone joindin-vm 
 
-    git clone git@github.com:%YourGitHubId/joindin-vm.git --recursive
+		git clone git@github.com:%%YourGitHubId%%/joindin-vm.git --recursive
 
 1. Execute the script that will clone the other 3 repository from your forks
 
-    php scripts/cloneRepository.php
+		php scripts/cloneRepository.php
 
 
 1. Start the VM
@@ -39,6 +39,26 @@ This repository provides a vagrant virtual machine so you can start contributing
 	- For the joind.in site: http://dev.joind.in:8080/
 	- For the responsive site: http://web2.dev.joind.in:8080/
 	- For the API: http://api.dev.joind.in:8080/
+
+
+## Running the tests
+To install the testing tools in the VM 
+1. Edit the file `puppet/manifests/params.pp`. Change the value of $tests to true. 
+1. Re provision the VM. If the VM is not on, run `vagrant up`, if it's on, run `vagrant provision`
+1. Wait for the testing tools to be installed. This will take a few minutes.
+1. Run the joind.in tests with this command from inside the VM  
+```
+        cd /vagrant/joind.in && phing
+```  
+1. Run the joindin-api tests with this command from inside the VM  
+```
+        cd /vagrant/joindin-api && phing
+```  
+1. Run the joindin-web2 tests with this command from inside the VM  
+```
+        cd /vagrant/joindin-web2 && phing
+```  
+
 
 
 
