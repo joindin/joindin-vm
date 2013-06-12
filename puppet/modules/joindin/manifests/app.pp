@@ -59,6 +59,13 @@ class joindin::app {
         replace => no,
     }
 
+    # Set some configuration for the VM
+    exec { 'application-config-values':
+        creates => '/tmp/.config_values_set', 
+        command => "sh /vagrant/scripts/fixConfig.sh && touch /tmp/.config_values_set", 
+        require => File['application-config'],
+    }
+
     # Create directory for user-generated content
     file { 'upload-directory':
         ensure  => directory,
