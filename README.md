@@ -23,18 +23,6 @@ This repository provides a vagrant virtual machine so you can start contributing
 1. Start the VM
     vagrant up
 
-1. Change the configuration file for the joind.in repository. Edit `joind.in/src/system/application/config/config.php` . Change line 38 to 
-
-        $config['base_url'] = 'http://dev.joind.in:8080/';
-
-   line 45 to
-
-        $config['api_base_url'] = 'http://api.dev.joind.in:8080/';
-
-   and line 385 to 
-
-        $config['token_dir'] = '/tmp/ctokens';
-
 1. Add hostname to /etc/hosts.
    If you are on Linux, run this:
 
@@ -55,7 +43,6 @@ This repository provides a vagrant virtual machine so you can start contributing
 
 
 ## TODO
-- Automate the configuration changes
 - Check if a fork exists for the user. Use the joind.in repo if not
 - Complete this Readme
 - Remove the VM from the other repos
