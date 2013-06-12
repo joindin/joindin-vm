@@ -62,9 +62,3 @@ To install the testing tools in the VM
 
 
 
-## TODO
-- Check if a fork exists for the user. Use the joind.in repo if not
-- Complete this Readme
-- Remove the VM from the other repos
-- Make a script to pull from the 3 repos
-
