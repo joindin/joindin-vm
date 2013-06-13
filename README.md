@@ -21,7 +21,8 @@ This repository provides a vagrant virtual machine so you can start contributing
 
 
 1. Start the VM
-    vagrant up
+
+		vagrant up
 
 1. Add hostname to /etc/hosts.
    If you are on Linux, run this:
