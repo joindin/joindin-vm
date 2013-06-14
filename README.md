@@ -57,8 +57,7 @@ This repository provides a vagrant virtual machine so you can start contributing
 - The database is running inside the VM. You can get to with the following commands:
 
          you@you> vagrant ssh
-         vagrant@vm> sudo -i
-         root@vm> mysql joindin -uroot
+         vagrant@vm> mysql joindin -uroot
 
 - To stop the VM so that you can work on it later, issue the following command 
   from the host machine:
