@@ -6,6 +6,10 @@ Quick way to get the platform for joind.in development set up
 This repository provides a vagrant virtual machine so you can start contributing quickly. Joind.in is a big project, so there a few parts involved. 
 
 ## Getting Started
+1. Install requirements. (Note: these are not required by joind.in itself, but are required for this quick start guide.)
+   - VirtualBox (https://www.virtualbox.org/) (versions 4.0 and 4.1 are currently supported)
+   - Ruby (http://www.ruby-lang.org/)
+   - Vagrant (http://vagrantup.com/)
 1. Fork the following joind.in repository
 	- [joind.in](https://github.com/joindin/joind.in)
 	- [joindin-api](https://github.com/joindin/joindin-api)
@@ -44,6 +48,25 @@ This repository provides a vagrant virtual machine so you can start contributing
 		* Username: imaadmin
 		* Password: password
 1. For other users, [look at the dbgen documentation.](https://github.com/joindin/joindin-api/tree/master/tools/dbgen#usernames-and-passwords)
+
+*Notes:*
+
+- HTTP and SSH ports on the VM are forwarded to localhost (22 -> 2222, 80 -> 8080)
+- The joind.in directory you cloned will be mounted inside the VM at `/vagrant`
+- You can develop by editing the files you cloned in the IDE of you choice.
+- The database is running inside the VM. You can get to with the following commands:
+
+         you@you> vagrant ssh
+         vagrant@vm> mysql joindin -uroot
+
+- To stop the VM so that you can work on it later, issue the following command 
+  from the host machine:
+
+         vagrant halt
+
+- To delete the VM completely, issue the following command from the host machine:
+
+         vagrant destroy 
 
 
 ## Running the tests
