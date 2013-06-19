@@ -28,6 +28,10 @@ This repository provides a vagrant virtual machine so you can start contributing
 
 		vagrant up
 
+	1. If you get this error:  
+			"The box 'centos-62-64-puppet' is still stored on disk in the Vagrant 1.0.x format. This box must be upgraded in order to work properly with this version of Vagrant.".   
+		You can fix it by running the command `vagrant box repackage centos-62-64-puppet virtualbox` and executing `vagrant up` again.
+
 1. Add hostname to /etc/hosts.
    If you are on Linux, run this:
 
