@@ -13,7 +13,13 @@ array_walk($repositoryToClone, 'addUpstreamRemote');
 
 function getGitUsername() {
 	$remote = `git remote show origin`;
-	$pattern = '/\s*Fetch URL:\s+git@github\.com:(.+)\//';
+	$isHttps = isHttpsClone($remote);
+
+	if ($isHttps) {
+		$pattern = '/\s*Fetch URL:\s+https:\/\/github\.com\/(.+)\//';
+	} else {
+		$pattern = '/\s*Fetch URL:\s+git@github\.com:(.+)\//';
+	}
 
 	$found = preg_match($pattern, $remote, $matches);
 	if (!$found || 2 != count($matches)) {
@@ -22,7 +28,6 @@ function getGitUsername() {
 
 	return $matches[1];
 }
-
 
 function cloneRepository($repoName, $index, $gitUsername) {
 	echo "Cloning {$repoName}\n";
@@ -36,4 +41,9 @@ function addUpstreamRemote($repoName) {
 	$remoteCommand = "git remote add upstream git@github.com:joindin/{$repoName}.git";
 	system($remoteCommand);
 	chdir('../');
+}
+
+function isHttpsClone($remote) {
+	$pattern = '/\s*Fetch URL:\s+https:\/\//';
+	return preg_match($pattern, $remote);
 }
