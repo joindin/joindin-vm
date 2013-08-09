@@ -1,17 +1,17 @@
 # File Managed by Puppet. Do not modify!
 
-<VirtualHost *:<%= port %>>
-    ServerAdmin webmaster@<%= name %>
-    DocumentRoot <%= docroot %>joind.in/src
-    ServerName <%= name %>
-<% if serveraliases != "" -%>
-    ServerAlias <%= serveraliases %>
+<VirtualHost *:<%= @port %>>
+    ServerAdmin webmaster@<%= @name %>
+    DocumentRoot <%= @docroot %>joind.in/src
+    ServerName <%= @name %>
+<% if @serveraliases != "" -%>
+    ServerAlias <%= @serveraliases %>
 <% end -%>
-    ErrorLog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-error_log
-    CustomLog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-access_log common
+    ErrorLog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-error_log
+    CustomLog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-access_log common
     SetEnv JOINDIN_DEBUG on
 
-	<Directory <%= docroot %>joind.in/src>
+	<Directory <%= @docroot %>joind.in/src>
                 <IfModule mod_rewrite.c>
                         Options +FollowSymLinks
                 </IfModule>
@@ -29,15 +29,15 @@
 
 </VirtualHost>
 
-<virtualhost *:<%= port %>>
-    documentroot <%= docroot %>joindin-api/src/public/
-    servername api.<%= name %>
+<virtualhost *:<%= @port %>>
+    documentroot <%= @docroot %>joindin-api/src/public/
+    servername api.<%= @name %>
 
-    errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-error_log
-    customlog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-access_log common
+    errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-error_log
+    customlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-access_log common
     setenv joindin_debug on
 
-	<directory <%= docroot %>joindin-api/src/public/>
+	<directory <%= @docroot %>joindin-api/src/public/>
                 <ifmodule mod_rewrite.c>
                         options +followsymlinks
                 </ifmodule>
@@ -55,15 +55,15 @@
 
 </virtualhost>
 
-<virtualhost *:<%= port %>>
-    documentroot <%= docroot %>joindin-web2/web
-    servername web2.<%= name %>
+<virtualhost *:<%= @port %>>
+    documentroot <%= @docroot %>joindin-web2/web
+    servername web2.<%= @name %>
 
-    errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-error_log
-    customlog <%= scope.lookupvar('apache::log_dir') %>/<%= name %>-access_log common
+    errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-error_log
+    customlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-access_log common
     setenv joindin_debug on
 
-   <directory <%= docroot %>joindin-web2/web>
+   <directory <%= @docroot %>joindin-web2/web>
                 <ifmodule mod_rewrite.c>
                         options +followsymlinks
                 </ifmodule>
