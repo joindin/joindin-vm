@@ -6,8 +6,8 @@ Vagrant::Config.run do |config|
   # We define one box (joindin), but
   config.vm.define :joindin do |ji_config|
 
-    ji_config.vm.box = 'centos-62-64-puppet'
-    ji_config.vm.box_url = 'http://packages.vstone.eu/vagrant-boxes/centos/6.2/centos-6.2-64bit-puppet-vbox.4.1.12.box'
+    ji_config.vm.box = 'centos-6x-64-puppet_chef'
+    ji_config.vm.box_url = 'http://packages.vstone.eu/vagrant-boxes/centos/6.x/centos-6.x-64bit-puppet.3.x-chef.0.10.x-vbox.4.2.12-3.box'
 
     ji_config.vm.host_name = "joind.in"
 
@@ -33,6 +33,7 @@ Vagrant::Config.run do |config|
         # '--debug',
         # '--graph',
         # '--graphdir=/vagrant/puppet/graphs'
+        "--hiera_config /vagrant/puppet/hiera.yaml"
       ]
     end
   end

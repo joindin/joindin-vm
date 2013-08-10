@@ -6,6 +6,10 @@ $repositoryToClone = array('joind.in', 'joindin-api', 'joindin-web2');
 $path = realpath(__DIR__ . '/../');
 chdir($path);
 
+echo "Preparing the submodules\n";
+echo `git submodule init`;
+echo `git submodule update`;
+
 $remoteString = `git remote show origin`;
 $useHttps = isHttpsClone($remoteString);
 
