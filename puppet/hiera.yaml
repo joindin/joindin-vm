@@ -1,0 +1,14 @@
+---
+:hierarchy:
+    - %{::osfamily}-pkgs
+    - %{::osfamily}-repos
+    - %{::vm_type}
+    - %{::vm_env}
+    - common
+
+:backends:
+    - yaml
+
+:yaml:
+        :datadir:
+            /vagrant/puppet/hieradata
