@@ -73,7 +73,9 @@ This repository provides a vagrant virtual machine so you can start contributing
 ## Running the tests
 To install the testing tools in the VM  
 
-1. Edit the file `puppet/manifests/params.pp`. Change the value of $tests to true.  
+1. Edit the file `puppet/hieradata/common.yaml.dist` to
+   `puppet/hieradata/common.yaml`.
+1. Change the value of `joindin::test::tests` to true.
 1. Re provision the VM. If the VM is not on, run `vagrant up`, if it's on, run `vagrant provision`  
 1. Wait for the testing tools to be installed. This will take a few minutes.  
 1. Run the joind.in tests with this command from inside the VM  
