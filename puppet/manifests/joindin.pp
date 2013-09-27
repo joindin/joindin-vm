@@ -5,6 +5,5 @@ Exec {
 }
 
 node default {
-    include params
     include joindin
 }
