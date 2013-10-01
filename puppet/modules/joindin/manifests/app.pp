@@ -1,19 +1,23 @@
-class joindin::app {
+class joindin::app (
+	$dbname = 'joindin',
+	$dbuser = 'joindin',
+	$dbpass = 'password'
+) {
 
     # Initialize database structure
     exec { 'init-db':
         creates => '/tmp/.patched',
         command => "/vagrant/joindin-api/scripts/patchdb.sh \
-                    -t /vagrant/joindin-api -d ${params::dbname} -u ${params::dbuser} \
-                    -p ${params::dbpass} -i && touch /tmp/.patched",
+                    -t /vagrant/joindin-api -d $dbname -u $dbuser \
+                    -p $dbpass -i && touch /tmp/.patched",
         require => Exec['create-db'],
     }
 
     # Patch database structure
     exec { 'patch-db':
         command => "/vagrant/joindin-api/scripts/patchdb.sh \
-                    -t /vagrant/joindin-api -d ${params::dbname} -u ${params::dbuser} \
-                    -p ${params::dbpass}",
+                    -t /vagrant/joindin-api -d $dbname -u $dbuser \
+                    -p $dbpass",
         require => [
             Exec['create-db'],
             Exec['init-db'],
@@ -33,7 +37,7 @@ class joindin::app {
     # Seed database
     exec { 'seed-db':
         creates => '/tmp/.seeded',
-        command => "mysql ${params::dbname} < /tmp/seed.sql && touch /tmp/.seeded",
+        command => "mysql $dbname < /tmp/seed.sql && touch /tmp/.seeded",
         require => [
                        Exec['init-db'],
                        Exec['seed-data'],

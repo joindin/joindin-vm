@@ -1,17 +1,17 @@
-class joindin::web {
+class joindin::web ($phpmyadmin = true, $host = 'dev.joind,in', $port = 80) {
     include apache
 	include mongodb
 
     # include phpmyadmin if needed
-    if $params::phpmyadmin == true {
+    if $phpmyadmin == true {
         include joindin::web::phpmyadmin
     }
 
     # Configure apache virtual host
-    apache::vhost { $params::host :
+    apache::vhost { $host :
         docroot  => '/vagrant/',
         template => 'joindin/vhost.conf.erb',
-        port     => $params::port,
+        port     => $port,
         require  => Package["apache"],
     }
 

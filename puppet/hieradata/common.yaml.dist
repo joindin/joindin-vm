@@ -1,0 +1,20 @@
+---
+joindin::web::host: 'dev.joind.in'
+joindin::web::port: '80' # Check `VagrantFile` for port forwarding settings
+
+# Database credentials. Test database will be setup with _test prefixed to these variables.
+joindin::app:dbname: 'joindin'
+joindin::app:dbuser: 'joindin'
+joindin::app:dbpass: 'password'
+
+joindin::sql:dbname: 'joindin'
+joindin::sql:dbuser: 'joindin'
+joindin::sql:dbpass: 'password'
+
+# True if phpmyadmin needs to be installed, false if not.
+joindin::web::phpmyadmin: true
+
+# True if the test suite needs to be installed, false for faster provisioning with no tests
+joindin::test::tests: false
+
+debug: true

@@ -42,9 +42,9 @@ $active_group = "default";
 $active_record = TRUE;
 
 $db['default']['hostname'] = "localhost";
-$db['default']['username'] = "<%= scope.lookupvar('params::dbuser') %>";
-$db['default']['password'] = "<%= scope.lookupvar('params::dbpass') %>";
-$db['default']['database'] = "<%= scope.lookupvar('params::dbname') %>";
+$db['default']['username'] = "<%= scope.lookupvar('dbuser') %>";
+$db['default']['password'] = "<%= scope.lookupvar('dbpass') %>";
+$db['default']['database'] = "<%= scope.lookupvar('dbname') %>";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;
@@ -55,9 +55,9 @@ $db['default']['char_set'] = "utf8";
 $db['default']['dbcollat'] = "utf8_general_ci";
 
 $db['test']['hostname'] = "localhost";
-$db['test']['username'] = "<%= scope.lookupvar('params::dbuser') %>_test";
-$db['test']['password'] = "<%= scope.lookupvar('params::dbpass') %>_test";
-$db['test']['database'] = "<%= scope.lookupvar('params::dbname') %>_test";
+$db['test']['username'] = "<%= scope.lookupvar('dbuser') %>_test";
+$db['test']['password'] = "<%= scope.lookupvar('dbpass') %>_test";
+$db['test']['database'] = "<%= scope.lookupvar('dbname') %>_test";
 $db['test']['dbdriver'] = "mysql";
 $db['test']['dbprefix'] = "";
 $db['test']['pconnect'] = TRUE;
