@@ -1,4 +1,4 @@
-class joindin::web ($phpmyadmin = true, $host = 'dev.joind,in', $port = 80) {
+class joindin::web ($phpmyadmin = true, $host = 'dev.joind.in', $port = 80) {
     include apache
 	include mongodb
 
