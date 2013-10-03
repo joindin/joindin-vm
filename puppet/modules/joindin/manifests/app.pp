@@ -48,6 +48,7 @@ class joindin::app (
     file { 'database-config':
         path   => '/vagrant/joind.in/src/system/application/config/database.php',
         content => template('joindin/database.php.erb'),
+		replace => false, 
     }
 
     # Set database config for application
