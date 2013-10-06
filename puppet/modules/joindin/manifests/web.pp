@@ -35,4 +35,9 @@ class joindin::web ($phpmyadmin = true, $host = 'dev.joind.in', $port = 80) {
         notify  => Service['apache'],
     }
 
+    # Add a row to the hosts file for the API calls
+    host { "api.dev.joind.in":
+        ip => "127.0.0.1",
+    }
+
 }
