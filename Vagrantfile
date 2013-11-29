@@ -37,4 +37,5 @@ Vagrant::Config.run do |config|
       ]
     end
   end
+  config.vm.network :hostonly, "192.168.33.15"
 end
