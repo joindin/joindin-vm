@@ -10,7 +10,7 @@ This repository provides a vagrant virtual machine so you can start contributing
    - VirtualBox (https://www.virtualbox.org/) (versions 4.0 and 4.1 are currently supported)
    - Ruby (http://www.ruby-lang.org/)
    - Vagrant (http://vagrantup.com/)
-1. Fork the following joind.in repository
+1. Fork the following joind.in repositories:
 	- [joind.in](https://github.com/joindin/joind.in)
 	- [joindin-api](https://github.com/joindin/joindin-api)
 	- [joindin-web2](https://github.com/joindin/joindin-web2)
@@ -55,7 +55,7 @@ This repository provides a vagrant virtual machine so you can start contributing
 - HTTP and SSH ports on the VM are forwarded to localhost (22 -> 2222, 80 -> 8080)
 - The joind.in directory you cloned will be mounted inside the VM at `/vagrant`
 - You can develop by editing the files you cloned in the IDE of you choice.
-- The database is running inside the VM. You can get to with the following commands:
+- The database is running inside the VM. You can get to it with the following commands:
 
          you@you> vagrant ssh
          vagrant@vm> mysql joindin -uroot
@@ -75,6 +75,8 @@ To install the testing tools in the VM
 
 1. Copy the file `puppet/hieradata/common.yaml.dist` to
    `puppet/hieradata/common.yaml`.
+
+        cp puppet/hieradata/common.yaml.dist puppet/hieradata/common.yaml
 1. Edit this file and change the value of `joindin::test::tests` to true.
 1. Re provision the VM. If the VM is not on, run `vagrant up`, if it's on, run `vagrant provision`  
 1. Wait for the testing tools to be installed. This will take a few minutes.  
