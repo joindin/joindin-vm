@@ -1,6 +1,6 @@
 class joindin::web ($phpmyadmin = true, $host = 'dev.joind.in', $port = 80) {
     include apache
-	include mongodb
+	include redis
 
     # include phpmyadmin if needed
     if $phpmyadmin == true {
