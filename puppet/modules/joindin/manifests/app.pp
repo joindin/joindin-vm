@@ -88,4 +88,11 @@ class joindin::app (
         replace => no,
     }
 
+    # Set core config for api
+    file { 'api-config':
+        path    => '/vagrant/joindin-api/src/config.php',
+        source  => '/vagrant/joindin-api/src/config.php.dist',
+        replace => no,
+    }
+
 }
