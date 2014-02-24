@@ -81,4 +81,18 @@ class joindin::app (
         require => Service['apache'],
     }
 
+    # Configure the web2
+    file { 'web2-config':
+        path    => '/vagrant/joindin-web2/config/config.php',
+        source  => "puppet:///modules/joindin/web2-config.php",
+        replace => no,
+    }
+
+    # Set core config for api
+    file { 'api-config':
+        path    => '/vagrant/joindin-api/src/config.php',
+        source  => '/vagrant/joindin-api/src/config.php.dist',
+        replace => no,
+    }
+
 }
