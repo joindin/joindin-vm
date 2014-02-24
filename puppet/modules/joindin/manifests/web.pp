@@ -17,7 +17,7 @@ class joindin::web ($phpmyadmin = true, $host = 'dev.joind.in', $port = 80) {
 
     # Install PHP modules
     php::module { 'mysql': }
-    php::module { ["pecl-xdebug", "pecl-mongo"] :
+    php::module { ["pecl-xdebug"] :
         require => File["EpelRepo"],            # xdebug is in the epel repo
     }
 

@@ -32,7 +32,7 @@ This repository provides a vagrant virtual machine so you can start contributing
 1. Add hostname to /etc/hosts.
    If you are on Linux, run this:
 
-        echo "\n127.0.0.1 dev.joind.in api.dev.joind.in web2.dev.joind.in" | sudo tee -a /etc/hosts
+        (echo ; echo "127.0.0.1 dev.joind.in api.dev.joind.in web2.dev.joind.in") | sudo tee -a /etc/hosts
    
    If you are on OSX, run this:
 
