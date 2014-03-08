@@ -5,4 +5,5 @@ class joindin {
     include joindin::web
     include joindin::app
     include joindin::test
+    include joindin::mailcatcher
 }
