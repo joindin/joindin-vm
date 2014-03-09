@@ -22,11 +22,13 @@ class joindin::mailcatcher {
     service { 'mailcatcher':
         ensure => 'running',
         enable => true,
+        require => [Package['mailcatcher'], File['mailcatcher'], File['mailcatcher-php.ini']]
     }
     file { "mailcatcher-php.ini" :
         path   => "/etc/php.d/mailcatcher.ini",
         source => "puppet:///modules/joindin/mailcatcher.ini",
         owner  => "root",
         group  => "root",
+        require => [Package['php']]
     }
 }
