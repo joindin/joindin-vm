@@ -116,5 +116,5 @@ On the latest Vagrant version, sometimes Vagrant stops before running Puppet. If
 
 ## Mailcatcher
 
-We use mailcatcher to grab emails before they leave the VM, and present them to you in a web interface so you can see what the system would be sending.  To check the mails that have been sent, visit http://localhost:8080 on your host machine.
+We use mailcatcher to grab emails before they leave the VM, and present them to you in a web interface so you can see what the system would be sending.  To check the mails that have been sent, visit http://localhost:8081 on your host machine.
 
