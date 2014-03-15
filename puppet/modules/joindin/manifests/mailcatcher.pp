@@ -31,4 +31,18 @@ class joindin::mailcatcher {
         group  => "root",
         require => [Package['php']]
     }
+
+    # Remove posfix to ensure that the vm will never send an email by mistake
+    # Using rpm directly instead of package {ensure => purged} so it does not remore crontab
+    rmpack {'postfix':}
+
+    define rmpack {
+        exec { 'remove_${name}' :
+            command => "/bin/rpm -e ${name} --nodeps",
+            path => "/bin/rpm",
+            onlyif => "/bin/rpm -q --quiet ${name}",
+        }
+    }
+
+
 }
