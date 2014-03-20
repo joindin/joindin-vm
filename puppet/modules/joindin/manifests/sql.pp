@@ -7,7 +7,7 @@ class joindin::sql ($dbuser = 'joindin', $dbpass = 'password', $dbname = 'joindi
         unless  => "mysql -u${dbuser} -p${dbpass} ${dbname}",
         command => "mysql -e \"create database ${dbname}; \
                     grant all on ${dbname}.* \
-                    to ${dbuser}@localhost identified by '${dbpass}';\"",
+                    to ${dbuser}@'%' identified by '${dbpass}';\"",
         require => Service['mysql'],
     }
 
