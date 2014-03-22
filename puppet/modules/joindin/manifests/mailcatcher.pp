@@ -31,4 +31,12 @@ class joindin::mailcatcher {
         group  => "root",
         require => [Package['php']]
     }
+
+
+
+    # Remove posfix to ensure that the vm will never send an email by mistake
+    service { 'postfix': 
+        ensure => 'stopped',
+        enable => false,
+    }
 }
