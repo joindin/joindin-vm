@@ -7,7 +7,7 @@ This repository provides a vagrant virtual machine so you can start contributing
 
 ## Getting Started
 1. Install requirements. (Note: these are not required by joind.in itself, but are required for this quick start guide.)
-   - VirtualBox (https://www.virtualbox.org/) (versions 4.0 and 4.1 are currently supported)
+   - VirtualBox and the VirtualBox Extension Pack (https://www.virtualbox.org/) (versions 4.0 and 4.1 are currently supported)
    - Ruby (http://www.ruby-lang.org/)
    - Vagrant (http://vagrantup.com/)
 1. Fork the following joind.in repositories:
@@ -21,6 +21,7 @@ This repository provides a vagrant virtual machine so you can start contributing
 
 1. Execute the script that will clone the other 3 repository from your forks
 
+		cd joindin-vm
 		php scripts/cloneRepository.php
 
 
@@ -59,6 +60,10 @@ This repository provides a vagrant virtual machine so you can start contributing
 
          you@you> vagrant ssh
          vagrant@vm> mysql joindin -uroot
+         
+- The database is also forwarded on port 3307 to your host, so you can also use:
+  
+        you@you> mysql -u joindin -h 127.0.0.1 -P 3307 -ppassword joindin
 
 - To stop the VM so that you can work on it later, issue the following command 
   from the host machine:
