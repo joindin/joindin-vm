@@ -60,6 +60,10 @@ This repository provides a vagrant virtual machine so you can start contributing
 
          you@you> vagrant ssh
          vagrant@vm> mysql joindin -uroot
+         
+- The database is also forwarded on port 3307 to your host, so you can also use:
+  
+        you@you> mysql -u joindin -h 127.0.0.1 -P 3307 -ppassword joindin
 
 - To stop the VM so that you can work on it later, issue the following command 
   from the host machine:
