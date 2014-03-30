@@ -3,6 +3,7 @@ class joindin::redis {
         ensure => 'installed'
     }
     service { 'redis':
-        ensure => 'running'
+        ensure => 'running',
+        enable => true,
     }
 }
