@@ -80,12 +80,15 @@ class joindin::test::test {
 
     package { 'graphviz': }
 
-    file { 'phpdoc':
-        path    => '/usr/local/bin/phpdoc',
-        mode    => '0755',
-        source => "puppet:///modules/joindin/tests/phpdoc",
-        before  => Notify['test'],
-        require => [Package['graphviz'], Package['php']],
+    exec { 'phpdoc':
+      creates => '/usr/bin/phpdoc',
+      command => 'pear channel-discover pear.phpdoc.org; true && \
+                  pear install phpdoc/phpDocumentor-alpha',
+      require => [
+        Package['php-pear'],
+        Package['graphviz'],
+      ],
+      before  => Notify['test'],
     }
 
     exec { 'phpcs':
