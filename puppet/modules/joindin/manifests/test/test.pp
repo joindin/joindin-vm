@@ -10,13 +10,6 @@ class joindin::test::test {
       require => Package['php'],
     }
 
-    # Discover the phpunit pear channel first - must do this separately because 
-    # there is no guarantee of which tool will install first
-    #exec { 'phpunit-channel':
-        #command => 'pear channel-discover pear.phpunit.de; true',
-        #require => Package['php-pear'],
-    #}
-
     # PHP DOM extension required by PHPUnit on CentOS
     package { 'php-xml':
       require => Package['php-pear'],
