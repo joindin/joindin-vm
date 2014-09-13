@@ -1,9 +1,11 @@
 class joindin::redis {
-    package { 'redis':
-        ensure => 'installed'
+    package { 'redis-server':
+        ensure => 'installed',
+        require => Exec['update-apt'],
     }
-    service { 'redis':
+    service { 'redis-server':
         ensure => 'running',
         enable => true,
+        require  => Package["redis-server"],
     }
 }
