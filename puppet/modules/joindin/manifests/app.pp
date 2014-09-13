@@ -76,8 +76,8 @@ class joindin::app (
         ensure  => directory,
         path    => '/tmp/ctokens',
         mode    => '0644',
-        owner   => 'apache',
-        group   => 'apache',
+        owner   => 'www-data',
+        group   => 'www-data',
         require => Service['apache'],
     }
 
