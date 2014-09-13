@@ -1,4 +1,4 @@
-class joindin::web ($phpmyadmin = true, $host = 'dev.joind.in', $port = 80) {
+class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
     include apache
 	include redis
 
@@ -16,14 +16,17 @@ class joindin::web ($phpmyadmin = true, $host = 'dev.joind.in', $port = 80) {
     }
 
     # Install PHP modules
-    php::module { 'mysql': }
-    php::module { ["pecl-xdebug"] :
-        require => File["EpelRepo"],            # xdebug is in the epel repo
+    php::module { 'mysql':
+        require => Exec['update-apt'],
+    }
+    php::module { ["xdebug"] :
+        # require => File["EpelRepo"],            # xdebug is in the epel repo
+        require => Exec['update-apt'],
     }
 
     # Set development values to our php.ini
     augeas { 'set-php-ini-values':
-        context => '/files/etc/php.ini',
+        context => '/files/etc/php5/apache2/php.ini',
         changes => [
             'set PHP/error_reporting "E_ALL | E_STRICT"',
             'set PHP/display_errors On',
@@ -34,6 +37,28 @@ class joindin::web ($phpmyadmin = true, $host = 'dev.joind.in', $port = 80) {
         require => Package['php'],
         notify  => Service['apache'],
     }
+
+    augeas { 'set-cli-php-ini-values':
+        context => '/files/etc/php5/cli/php.ini',
+        changes => [
+            'set PHP/error_reporting "E_ALL | E_STRICT"',
+            'set PHP/display_errors On',
+            'set PHP/display_startup_errors On',
+            'set PHP/html_errors On',
+            'set Date/date.timezone Europe/London',
+        ],
+        require => Package['php'],
+        notify  => Service['apache'],
+    }
+
+
+    exec { 'enable-php5':
+        creates => '/tmp/.enable-php5',
+        command => "sudo a2enmod php5 && sudo a2enmod rewrite",
+        require => Augeas['set-php-ini-values'],
+        notify  => Service['apache'],
+    }
+
 
     # Add a row to the hosts file for the API calls
     host { "api.dev.joind.in":

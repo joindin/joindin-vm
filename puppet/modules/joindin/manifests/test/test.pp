@@ -10,18 +10,13 @@ class joindin::test::test {
       require => Package['php'],
     }
 
-    # PHP DOM extension required by PHPUnit on CentOS
-    package { 'php-xml':
-      require => Package['php-pear'],
-    }
-
     # Install test-suite tools
     file { 'phpunit':
         path    => '/usr/local/bin/phpunit',
         mode    => '0755',
         source => "puppet:///modules/joindin/tests/phpunit",
         before  => Notify['test'],
-        require => [Package['php-xml'], Package['php']],
+        require => [Package['php']],
     }
 
     file { 'phploc':
@@ -45,7 +40,7 @@ class joindin::test::test {
         mode    => '0755',
         source => "puppet:///modules/joindin/tests/pdepend",
         before  => Notify['test'],
-        require => [Package['php-xml'], Package['php']],
+        require => [Package['php']],
     }
 
     file { 'phpmd':

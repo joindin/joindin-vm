@@ -1,9 +1,8 @@
 class joindin::web::phpmyadmin {
 
     # Install PHPMyAdmin on /phpmyadmin
-    package { "phpMyAdmin" :
+    package { "phpmyadmin" :
         ensure  => present,
-        require => File["EpelRepo"],
     }
 
     # Setup our own phpmyadmin configuration file
@@ -11,7 +10,7 @@ class joindin::web::phpmyadmin {
         source  => "puppet:///modules/joindin/phpmyadmin.conf",
         owner   => "root",
         group   => "root",
-        require => Package["phpMyAdmin"],
+        require => Package["phpmyadmin"],
         notify  => Service["apache"],
     }
 
