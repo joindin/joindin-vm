@@ -36,7 +36,7 @@ class joindin::mailcatcher {
     }
 
     exec { 'mailcatcher-run-on-boot':
-        creates => '/tmp/.mailcatcher-update-rc.d',
+        onlyif => "test ! -f /etc/rc2.d/S18mailcatcher",
         command => "update-rc.d mailcatcher defaults",
         require => Service['mailcatcher'],
     }
