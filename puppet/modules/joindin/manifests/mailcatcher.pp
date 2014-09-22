@@ -23,7 +23,7 @@ class joindin::mailcatcher {
     }
     file { "mailcatcher-php.ini" :
         ensure => 'present',
-        path   => "/etc/php5/mods-available/mailcatcher.ini",
+        path   => "/etc/php5/apache2/conf.d/30-mailcatcher.ini",
         source => "puppet:///modules/joindin/mailcatcher.ini",
         owner  => "root",
         group  => "root",
