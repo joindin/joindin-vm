@@ -53,7 +53,7 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
 
 
     exec { 'enable-php5':
-        creates => '/tmp/.enable-php5',
+        onlyif => "test ! -f /etc/apache2/mods-enabled/php5.load",
         command => "sudo a2enmod php5 && sudo a2enmod rewrite",
         require => Augeas['set-php-ini-values'],
         notify  => Service['apache'],
