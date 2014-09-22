@@ -8,11 +8,22 @@ class joindin::mailcatcher {
     package { 'libsqlite3-dev':
         ensure   => 'installed'
     }
+    package { 'ssmtp':
+        ensure   => 'installed'
+    }
     package { 'mailcatcher':
         ensure   => 'installed',
         provider => 'gem',
         require  => Package['ruby-dev', 'gcc', 'libsqlite3-dev'],
     }
+    file { "ssmtp-config" :
+    	ensure => "present",
+    	path   => "/etc/ssmtp/ssmtp.conf",
+        source => "puppet:///modules/joindin/ssmtp.conf",
+        owner  => "root",
+        group  => "root",
+        require  => Package['ssmtp'],
+	}
     file { "mailcatcher" :
         ensure => 'present',
         path   => "/etc/init.d/mailcatcher",
