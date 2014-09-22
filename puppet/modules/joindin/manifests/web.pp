@@ -24,6 +24,11 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
         require => Exec['update-apt'],
     }
 
+    # API requires curl
+    php::module { 'curl':
+      require => Package['php'],
+    }
+
     # Set development values to our php.ini
     augeas { 'set-php-ini-values':
         context => '/files/etc/php5/apache2/php.ini',
