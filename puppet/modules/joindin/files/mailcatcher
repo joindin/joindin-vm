@@ -21,7 +21,7 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/rvm/gems/ruby-1.9.3-p547/bin
 DESC="Super simple SMTP server"
 NAME=mailcatcher
-DAEMON=/usr/local/rvm/gems/ruby-1.9.3-p547/bin/$NAME
+DAEMON=/usr/local/rvm/wrappers/default/$NAME
 DAEMON_ARGS=" --http-ip 0.0.0.0"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
