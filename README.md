@@ -7,9 +7,9 @@ This repository provides a vagrant virtual machine so you can start contributing
 
 ## Getting Started
 1. Install requirements. (Note: these are not required by joind.in itself, but are required for this quick start guide.)
-   - VirtualBox and the VirtualBox Extension Pack (https://www.virtualbox.org/) (versions 4.0 and 4.1 are currently supported)
+   - VirtualBox and the VirtualBox Extension Pack (https://www.virtualbox.org/) (version 4.0 or later)
    - Ruby (http://www.ruby-lang.org/)
-   - Vagrant (http://vagrantup.com/)
+   - Vagrant (http://vagrantup.com/) version 1.5+
 1. Fork the following joind.in repositories:
 	- [joind.in](https://github.com/joindin/joind.in)
 	- [joindin-api](https://github.com/joindin/joindin-api)
