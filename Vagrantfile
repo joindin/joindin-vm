@@ -6,7 +6,7 @@ Vagrant::Config.run do |config|
   # We define one box (joindin), but
   config.vm.define :joindin do |ji_config|
 
-    ji_config.vm.box = 'puphpet/debian75-x64'
+    ji_config.vm.box = 'joindin/development'
 
     ji_config.vm.host_name = "joind.in"
 
