@@ -123,3 +123,16 @@ On the latest Vagrant version, sometimes Vagrant stops before running Puppet. If
 
 We use mailcatcher to grab emails before they leave the VM, and present them to you in a web interface so you can see what the system would be sending.  To check the mails that have been sent, visit http://localhost:8081 on your host machine.
 
+
+## Importing the base box separately
+
+To import the base box separately (e.g. for conference hackathoons):
+
+1. Download the base box from
+[http://akrabat.com/stuff/joindin-development.1.0.0.box](http://akrabat.com/stuff/joindin-development.1.0.0.box).
+2. Import the base box:
+
+        vagrant box add joindin/development /path/to/joindin-development.1.0.0.box
+    
+That's it; just follow the steps in *Getting Started*.
+
