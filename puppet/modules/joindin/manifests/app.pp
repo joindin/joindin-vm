@@ -83,6 +83,8 @@ class joindin::app (
 
     # Configure the web2
     file { 'web2-config':
+        ensure  => present,
+        owner   => 'vagrant',
         path    => '/vagrant/joindin-web2/config/config.php',
         source  => "puppet:///modules/joindin/web2-config.php",
         replace => no,
