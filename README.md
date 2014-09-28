@@ -126,7 +126,7 @@ We use mailcatcher to grab emails before they leave the VM, and present them to 
 
 ## Importing the base box separately
 
-To import the base box separately (e.g. for conference hackathoons):
+To import the base box separately (e.g. for conference hackathons):
 
 1. Download the base box from
 [http://akrabat.com/stuff/joindin-development.1.0.0.box](http://akrabat.com/stuff/joindin-development.1.0.0.box).
