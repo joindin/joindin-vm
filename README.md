@@ -129,7 +129,7 @@ We use mailcatcher to grab emails before they leave the VM, and present them to 
 To import the base box separately (e.g. for conference hackathons):
 
 1. Download the base box from
-[http://akrabat.com/stuff/joindin-development.1.0.0.box](http://akrabat.com/stuff/joindin-development.1.0.0.box).
+[http://cdn.19ft.com/joindin-development.1.0.0.box](http://cdn.19ft.com/joindin-development.1.0.0.box).
 2. Import the base box:
 
         vagrant box add joindin/development /path/to/joindin-development.1.0.0.box
