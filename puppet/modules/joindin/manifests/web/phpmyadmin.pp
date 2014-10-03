@@ -6,7 +6,7 @@ class joindin::web::phpmyadmin {
     }
 
     # Setup our own phpmyadmin configuration file
-    file { "/etc/httpd/conf.d/phpMyAdmin.conf" :
+    file { "/etc/phpmyadmin/apache.conf" :
         source  => "puppet:///modules/joindin/phpmyadmin.conf",
         owner   => "root",
         group   => "root",
