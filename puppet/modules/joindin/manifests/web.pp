@@ -70,4 +70,13 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
         ip => "127.0.0.1",
     }
 
+  file { "xdebug.ini" :
+    ensure => 'present',
+    path   => "/etc/php5/apache2/conf.d/30-xdebug.ini",
+    source => "puppet:///modules/joindin/xdebug.ini",
+    owner  => "root",
+    group  => "root",
+    require => [Package['php']],
+    notify  => Service['apache']
+  }
 }
