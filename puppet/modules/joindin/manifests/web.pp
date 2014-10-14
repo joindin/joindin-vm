@@ -70,4 +70,17 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
         ip => "127.0.0.1",
     }
 
+    # ensure that the /tmp/ctokens folder is created
+    file { 'joindin-ctokens' :
+        ensure => 'present',
+        path   => "/etc/init.d/joindin-ctokens",
+        source => "puppet:///modules/joindin/joindin-ctokens",
+        owner  => "root",
+        group  => "root",
+    }
+    exec { 'joindin-ctokens-run-on-boot':
+        onlyif => "test ! -f /etc/rcS.d/S19joindin-ctokens",
+        command => "update-rc.d joindin-ctokens start 19 S",
+        require => File['joindin-ctokens'],
+    }
 }
