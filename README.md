@@ -136,3 +136,16 @@ To import the base box separately (e.g. for conference hackathons):
     
 That's it; just follow the steps in *Getting Started*.
 
+## Xdebug/PHPStorm Setup
+
+Xdebug is setup on the dev VM, with remote_start enabled, by default.  To start 
+using this, visit http://www.jetbrains.com/phpstorm/marklets/, generate the 
+bookmarklets with IDE key `PHPSTORM`, and the 'Start debugger' and 'Stop 
+debugger' bookmarklets to your browsers bookmark bar.  These bookmarklets set 
+the required cookies to trigger or stop triggering remote debugging of scripts.
+    
+To test all is working OK, open the entry point index.php file for the relevant 
+repo and add a breakpoint (Cmd+F8 on Mac), and visit a public URL for the 
+relevant repo.  If all is setup correctly, PHPStorm should prompt you to select 
+the local file that the remote file maps to.  Simply select the local index.php 
+file for the repo and you should be good to go. 
