@@ -83,4 +83,14 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
         command => "update-rc.d joindin-ctokens start 19 S",
         require => File['joindin-ctokens'],
     }
+
+    file { "xdebug.ini" :
+        ensure => 'present',
+        path   => "/etc/php5/apache2/conf.d/30-xdebug.ini",
+        source => "puppet:///modules/joindin/xdebug.ini",
+        owner  => "root",
+        group  => "root",
+        require => [Package['php']],
+        notify  => Service['apache']
+    }
 }
