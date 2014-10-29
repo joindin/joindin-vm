@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant::Config.run do |config|
+Vagrant.configure("2") do |config|
 
   # We define one box (joindin), but
   config.vm.define :joindin do |ji_config|
@@ -12,10 +12,7 @@ Vagrant::Config.run do |config|
 
     # Forward a port from the guest to the host, which allows for outside
     # computers to access the VM, whereas host only networking does not.
-    ji_config.vm.forward_port 80, 8080
-    ji_config.vm.forward_port 1080, 8081
-    ji_config.vm.forward_port 3306, 3307
-
+    ji_config.vm.network :private_network, ip: "10.223.175.44"
 
     # Share an additional folder to the guest VM. The first argument is
     # an identifier, the second is the path on the guest to mount the
