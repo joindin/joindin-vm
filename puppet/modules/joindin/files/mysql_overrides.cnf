@@ -1,0 +1,7 @@
+
+[mysqld]
+
+# bind to 0.0.0.0 so that we can access MySQL from the outside
+# Don't do this on a production system!
+bind-address       = 0.0.0.0
+

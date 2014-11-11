@@ -13,4 +13,11 @@ class joindin::sql ($dbuser = 'joindin', $dbpass = 'password', $dbname = 'joindi
         require => Service['mysql'],
     }
 
+    # Setup mysql configuration overrides
+    file { "/etc/mysql/conf.d/mysql_overrides.cnf" :
+        source  => "puppet:///modules/joindin/mysql_overrides.cnf",
+        owner   => "root",
+        group   => "root",
+        notify  => Service['mysql']
+    }
 }
