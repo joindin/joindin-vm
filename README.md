@@ -33,19 +33,19 @@ This repository provides a vagrant virtual machine so you can start contributing
 1. Add hostname to /etc/hosts.
    If you are on Linux, run this:
 
-        (echo ; echo "127.0.0.1 dev.joind.in api.dev.joind.in web2.dev.joind.in") | sudo tee -a /etc/hosts
+        (echo ; echo "10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in") | sudo tee -a /etc/hosts
    
    If you are on OSX, run this:
 
-        echo "127.0.0.1 dev.joind.in api.dev.joind.in web2.dev.joind.in" | sudo tee -a /etc/hosts
+        echo "10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in" | sudo tee -a /etc/hosts
 
    If you are on Windows, run this on the cmd line
 
-        echo 127.0.0.1 dev.joind.in api.dev.joind.in web2.dev.joind.in >> %SYSTEMDRIVE%\Windows\System32\Drivers\Etc\Hosts
+        echo 10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in >> %SYSTEMDRIVE%\Windows\System32\Drivers\Etc\Hosts
 1. Browse to the sites
-	- For the joind.in site: http://dev.joind.in:8080/
-	- For the responsive site: http://web2.dev.joind.in:8080/
-	- For the API: http://api.dev.joind.in:8080/
+	- For the joind.in site: http://dev.joind.in/
+	- For the responsive site: http://web2.dev.joind.in/
+	- For the API: http://api.dev.joind.in/
 1. You can log to joind.in test site with those credentials for an admin account:
 		* Username: imaadmin
 		* Password: password
@@ -53,7 +53,6 @@ This repository provides a vagrant virtual machine so you can start contributing
 
 *Notes:*
 
-- HTTP and SSH ports on the VM are forwarded to localhost (22 -> 2222, 80 -> 8080)
 - The joind.in directory you cloned will be mounted inside the VM at `/vagrant`
 - You can develop by editing the files you cloned in the IDE of you choice.
 - The database is running inside the VM. You can get to it with the following commands:
@@ -63,7 +62,7 @@ This repository provides a vagrant virtual machine so you can start contributing
          
 - The database is also forwarded on port 3307 to your host, so you can also use:
   
-        you@you> mysql -u joindin -h 127.0.0.1 -P 3307 -ppassword joindin
+        you@you> mysql -u joindin -h 10.223.175.44 -P 3306 -ppassword joindin
 
 - To stop the VM so that you can work on it later, issue the following command 
   from the host machine:
