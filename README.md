@@ -30,25 +30,30 @@ This repository provides a vagrant virtual machine so you can start contributing
 		vagrant up
 
 
-1. Add hostname to /etc/hosts.
-   If you are on Linux, run this:
-
-        (echo ; echo "10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in") | sudo tee -a /etc/hosts
+1. If you don't have the [hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)
+   Vagrant plugin, then add hostname to /etc/hosts.
    
-   If you are on OSX, run this:
+       If you are on Linux, run this:
 
-        echo "10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in" | sudo tee -a /etc/hosts
+            (echo ; echo "10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in") | sudo tee -a /etc/hosts
+       
+       If you are on OSX, run this:
 
-   If you are on Windows, run this on the cmd line
+            echo "10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in" | sudo tee -a /etc/hosts
 
-        echo 10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in >> %SYSTEMDRIVE%\Windows\System32\Drivers\Etc\Hosts
+       If you are on Windows, run this on the cmd line
+
+            echo 10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in >> %SYSTEMDRIVE%\Windows\System32\Drivers\Etc\Hosts
+
 1. Browse to the sites
 	- For the joind.in site: http://dev.joind.in/
 	- For the responsive site: http://web2.dev.joind.in/
 	- For the API: http://api.dev.joind.in/
+
 1. You can log to joind.in test site with those credentials for an admin account:
 		* Username: imaadmin
 		* Password: password
+
 1. For other users, [look at the dbgen documentation.](https://github.com/joindin/joindin-api/tree/master/tools/dbgen#usernames-and-passwords)
 
 *Notes:*
