@@ -9,7 +9,9 @@ Vagrant.configure("2") do |config|
     ji_config.vm.box = 'joindin/development'
 
     ji_config.vm.host_name = "dev.joind.in"
-    ji_config.hostsupdater.aliases = ["web2.dev.joind.in", "api.dev.joind.in"]
+    if Vagrant.has_plugin?('vagrant-hostsupdater')
+      ji_config.hostsupdater.aliases = ["web2.dev.joind.in", "api.dev.joind.in"]
+    end
 
     # Forward a port from the guest to the host, which allows for outside
     # computers to access the VM, whereas host only networking does not.
