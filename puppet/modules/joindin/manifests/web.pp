@@ -65,8 +65,11 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
     }
 
 
-    # Add a row to the hosts file for the API calls
+    # Add a row to the hosts file for the virtual hosts
     host { "api.dev.joind.in":
+        ip => "127.0.0.1",
+    }
+    host { "dev.joind.in":
         ip => "127.0.0.1",
     }
 
