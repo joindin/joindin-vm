@@ -5,3 +5,5 @@
 # Don't do this on a production system!
 bind-address       = 0.0.0.0
 
+# Skip reverse DNS lookup of clients
+skip-name-resolve
