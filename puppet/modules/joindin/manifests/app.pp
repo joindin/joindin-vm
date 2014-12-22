@@ -97,6 +97,7 @@ class joindin::app (
         require => [
             File['application-config'],
             File['web2-config'],
+            File['api-config'],
         ]
     }
 
