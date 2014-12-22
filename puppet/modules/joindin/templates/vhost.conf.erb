@@ -35,7 +35,6 @@
 
     errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-error_log
     customlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-access_log common
-    setenv joindin_debug on
 
 	<directory <%= @docroot %>joindin-api/src/public/>
                 <ifmodule mod_rewrite.c>
@@ -61,7 +60,6 @@
 
     errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-error_log
     customlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-access_log common
-    setenv joindin_debug on
 
    <directory <%= @docroot %>joindin-web2/web>
                 <ifmodule mod_rewrite.c>

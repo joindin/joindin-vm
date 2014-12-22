@@ -1,6 +1,6 @@
-class joindin::web ($phpmyadmin = true, $host = 'dev.joind.in', $port = 80) {
+class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
     include apache
-	include mongodb
+	include redis
 
     # include phpmyadmin if needed
     if $phpmyadmin == true {
@@ -16,14 +16,22 @@ class joindin::web ($phpmyadmin = true, $host = 'dev.joind.in', $port = 80) {
     }
 
     # Install PHP modules
-    php::module { 'mysql': }
-    php::module { ["pecl-xdebug", "pecl-mongo"] :
-        require => File["EpelRepo"],            # xdebug is in the epel repo
+    php::module { 'mysql':
+        require => Exec['update-apt'],
+    }
+    php::module { ["xdebug"] :
+        # require => File["EpelRepo"],            # xdebug is in the epel repo
+        require => Exec['update-apt'],
+    }
+
+    # API requires curl
+    php::module { 'curl':
+      require => Package['php'],
     }
 
     # Set development values to our php.ini
     augeas { 'set-php-ini-values':
-        context => '/files/etc/php.ini',
+        context => '/files/etc/php5/apache2/php.ini',
         changes => [
             'set PHP/error_reporting "E_ALL | E_STRICT"',
             'set PHP/display_errors On',
@@ -35,9 +43,57 @@ class joindin::web ($phpmyadmin = true, $host = 'dev.joind.in', $port = 80) {
         notify  => Service['apache'],
     }
 
-    # Add a row to the hosts file for the API calls
+    augeas { 'set-cli-php-ini-values':
+        context => '/files/etc/php5/cli/php.ini',
+        changes => [
+            'set PHP/error_reporting "E_ALL | E_STRICT"',
+            'set PHP/display_errors On',
+            'set PHP/display_startup_errors On',
+            'set PHP/html_errors On',
+            'set Date/date.timezone Europe/London',
+        ],
+        require => Package['php'],
+        notify  => Service['apache'],
+    }
+
+
+    exec { 'enable-php5':
+        onlyif => "test ! -f /etc/apache2/mods-enabled/php5.load",
+        command => "sudo a2enmod php5 && sudo a2enmod rewrite",
+        require => Augeas['set-php-ini-values'],
+        notify  => Service['apache'],
+    }
+
+
+    # Add a row to the hosts file for the virtual hosts
     host { "api.dev.joind.in":
         ip => "127.0.0.1",
     }
+    host { "dev.joind.in":
+        ip => "127.0.0.1",
+    }
 
+    # ensure that the /tmp/ctokens folder is created
+    file { 'joindin-ctokens' :
+        ensure => 'present',
+        path   => "/etc/init.d/joindin-ctokens",
+        source => "puppet:///modules/joindin/joindin-ctokens",
+        owner  => "root",
+        group  => "root",
+    }
+    exec { 'joindin-ctokens-run-on-boot':
+        onlyif => "test ! -f /etc/rcS.d/S19joindin-ctokens",
+        command => "update-rc.d joindin-ctokens start 19 S",
+        require => File['joindin-ctokens'],
+    }
+
+    file { "xdebug.ini" :
+        ensure => 'present',
+        path   => "/etc/php5/apache2/conf.d/30-xdebug.ini",
+        source => "puppet:///modules/joindin/xdebug.ini",
+        owner  => "root",
+        group  => "root",
+        require => [Package['php']],
+        notify  => Service['apache']
+    }
 }

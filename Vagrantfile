@@ -1,20 +1,21 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant::Config.run do |config|
+Vagrant.configure("2") do |config|
 
   # We define one box (joindin), but
   config.vm.define :joindin do |ji_config|
 
-    ji_config.vm.box = 'centos-6x-64-puppet_chef'
-    ji_config.vm.box_url = 'http://packages.vstone.eu/vagrant-boxes/centos/6.x/centos-6.x-64bit-puppet.3.x-chef.0.10.x-vbox.4.2.12-3.box'
+    ji_config.vm.box = 'joindin/development'
 
-    ji_config.vm.host_name = "joind.in"
+    ji_config.vm.host_name = "dev.joind.in"
+    if Vagrant.has_plugin?('vagrant-hostsupdater')
+      ji_config.hostsupdater.aliases = ["web2.dev.joind.in", "api.dev.joind.in"]
+    end
 
     # Forward a port from the guest to the host, which allows for outside
     # computers to access the VM, whereas host only networking does not.
-    ji_config.vm.forward_port 80, 8080
-
+    ji_config.vm.network :private_network, ip: "10.223.175.44"
 
     # Share an additional folder to the guest VM. The first argument is
     # an identifier, the second is the path on the guest to mount the
@@ -29,7 +30,7 @@ Vagrant::Config.run do |config|
       puppet.module_path = "puppet/modules"
       puppet.manifest_file = "joindin.pp"
       puppet.options = [
-        '--verbose',
+        # '--verbose',
         # '--debug',
         # '--graph',
         # '--graphdir=/vagrant/puppet/graphs'

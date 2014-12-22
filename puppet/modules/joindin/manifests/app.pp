@@ -64,21 +64,40 @@ class joindin::app (
         replace => no,
     }
 
-    # Set some configuration for the VM
-    exec { 'application-config-values':
-        creates => '/tmp/.config_values_set', 
-        command => "sh /vagrant/scripts/fixConfig.sh && touch /tmp/.config_values_set", 
-        require => File['application-config'],
-    }
-
     # Create directory for user-generated content
     file { 'upload-directory':
         ensure  => directory,
         path    => '/tmp/ctokens',
         mode    => '0644',
-        owner   => 'apache',
-        group   => 'apache',
+        owner   => 'www-data',
+        group   => 'www-data',
         require => Service['apache'],
+    }
+
+    # Configure the web2
+    file { 'web2-config':
+        ensure  => present,
+        owner   => 'vagrant',
+        path    => '/vagrant/joindin-web2/config/config.php',
+        source  => "/vagrant/joindin-web2/config/config.php.dist",
+        replace => no,
+    }
+
+    # Set core config for api
+    file { 'api-config':
+        path    => '/vagrant/joindin-api/src/config.php',
+        source  => '/vagrant/joindin-api/src/config.php.dist',
+        replace => no,
+    }
+
+    # Set some configuration for the VM
+    exec { 'application-config-values':
+        creates => '/tmp/.config_values_set',
+        command => "sh /vagrant/scripts/fixConfig.sh && touch /tmp/.config_values_set",
+        require => [
+            File['application-config'],
+            File['web2-config'],
+        ]
     }
 
 }
