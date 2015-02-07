@@ -153,3 +153,27 @@ repo and add a breakpoint (Cmd+F8 on Mac), and visit a public URL for the
 relevant repo.  If all is setup correctly, PHPStorm should prompt you to select 
 the local file that the remote file maps to.  Simply select the local index.php 
 file for the repo and you should be good to go. 
+
+
+## Packaging the box from event with slow connection
+
+If you are at an event with a slow connection it's possible to package the box and copy it on a usb key. This way others don't need to download it.
+
+### Package the box
+
+1. cd into the joindin-vm directory
+1. Package the vagrant box
+
+        vagrant package
+
+1. Copy the generated file to a usb key.
+
+### Using the packaged box
+
+1. Copy the box file on your machine
+1. Import the box
+
+        vagrant box add joindin/development pathtofile
+
+1. Follow the Getting Started instructions
+
