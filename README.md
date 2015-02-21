@@ -128,18 +128,6 @@ On the latest Vagrant version, sometimes Vagrant stops before running Puppet. If
 We use mailcatcher to grab emails before they leave the VM, and present them to you in a web interface so you can see what the system would be sending.  To check the mails that have been sent, visit [http://dev.joind.in:1080/](http://dev.joind.in:1080/) on your host machine.
 
 
-## Importing the base box separately
-
-To import the base box separately (e.g. for conference hackathons):
-
-1. Download the base box from
-[http://cdn.19ft.com/joindin-development.1.0.0.box](http://cdn.19ft.com/joindin-development.1.0.0.box).
-2. Import the base box:
-
-        vagrant box add joindin/development /path/to/joindin-development.1.0.0.box
-    
-That's it; just follow the steps in *Getting Started*.
-
 ## Xdebug/PHPStorm Setup
 
 Xdebug is setup on the dev VM, with remote_start enabled, by default.  To start 
@@ -159,7 +147,12 @@ file for the repo and you should be good to go.
 
 If you are at an event with a slow connection it's possible to package the box and copy it on a usb key. This way others don't need to download it.
 
+## Download the box before the event
+You can download the box from [http://cdn.19ft.com/joindin-development.1.0.0.box](http://cdn.19ft.com/joindin-development.1.0.0.box). Then copy it on a usb key and share it at the event.
+
+
 ### Package the box
+If you're already at the event and can't download the box, someone who already have it can package it.
 
 1. cd into the joindin-vm directory
 1. Package the vagrant box
@@ -173,7 +166,7 @@ If you are at an event with a slow connection it's possible to package the box a
 1. Copy the box file on your machine
 1. Import the box
 
-        vagrant box add joindin/development pathtofile
+        vagrant box add joindin/development path/to/file
 
 1. Follow the Getting Started instructions
 
