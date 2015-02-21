@@ -147,7 +147,7 @@ file for the repo and you should be good to go.
 
 If you are at an event with a slow connection it's possible to package the box and copy it on a usb key. This way others don't need to download it.
 
-## Download the box before the event
+### Download the box before the event
 You can download the box from [http://cdn.19ft.com/joindin-development.1.0.0.box](http://cdn.19ft.com/joindin-development.1.0.0.box). Then copy it on a usb key and share it at the event.
 
 
