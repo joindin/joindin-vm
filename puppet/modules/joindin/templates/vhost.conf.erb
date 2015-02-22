@@ -4,6 +4,7 @@
     ServerAdmin webmaster@<%= @name %>
     DocumentRoot <%= @docroot %>joind.in/src
     ServerName <%= @name %>
+    serveralias web1*.ngrok.com
 <% if @serveraliases != "" -%>
     ServerAlias <%= @serveraliases %>
 <% end -%>
@@ -32,6 +33,7 @@
 <virtualhost *:<%= @port %>>
     documentroot <%= @docroot %>joindin-api/src/public/
     servername api.<%= @name %>
+    serveralias api*.ngrok.com
 
     errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-error_log
     customlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-access_log common
@@ -57,6 +59,7 @@
 <virtualhost *:<%= @port %>>
     documentroot <%= @docroot %>joindin-web2/web
     servername web2.<%= @name %>
+    serveralias web2*.ngrok.com
 
     errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-error_log
     customlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-access_log common
