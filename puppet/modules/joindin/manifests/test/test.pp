@@ -1,5 +1,11 @@
 class joindin::test::test {
 
+    # install wireshark for easier debugging
+    package { 'wireshark':
+          ensure  => latest,
+          require  => Exec['update-apt'],
+    }
+
     # Install ant to build test suite
     package { 'ant':
       #require => Notify['running'],
