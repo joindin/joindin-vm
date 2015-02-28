@@ -170,3 +170,14 @@ If you're already at the event and can't download the box, someone who already h
 
 3. Follow the Getting Started instructions
 
+### Debugging with wireshark
+
+The VM has wireshark installed so that you can view the traffic between the api and web2 (or any other client).
+
+On your local machine, in the joindin-vm directory, you can use this command to start wireshark with it reading traffic on the VM:
+
+    wireshark -k -i <(vagrant ssh -c "sudo dumpcap -P -i any -w - -f 'not tcp port 22'" -- -ntt)
+
+(note that on OS X, you need to start X11 first)
+
+Full details are [in this article](http://www.lornajane.net/posts/2014/wireshark-capture-on-remote-server)
