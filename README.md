@@ -170,3 +170,15 @@ If you're already at the event and can't download the box, someone who already h
 
 3. Follow the Getting Started instructions
 
+
+## Exposing to the web via ngrok
+
+If you want to expose the VM's websites to the web via [ngrok](http://ngrok.com), then you need to sign up with ngrok and register your authtoken with the ngrok command line tool. This is so that you can use ngrok's custom subdomains feature. Each website within the VM is set up to support a prefixed subdomain to which you append your own unique string.
+
+For example, using the custom string `example`, you can run these commands to expose the given site to the Internet:
+
+* api : `ngrok -subdomain apiexample dev.joind.in:80`
+* web2: `ngrok -subdomain web2example dev.joind.in:80`
+* web1: `ngrok -subdomain web1example dev.joind.in:80`
+
+Therefore, running `ngrok -subdomain web2example dev.joind.in:80` will enable anyone on the Internet to access your development version of web2 at http://web2example.ngrok.com.
