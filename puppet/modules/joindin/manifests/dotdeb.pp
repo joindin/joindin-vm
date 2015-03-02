@@ -30,6 +30,5 @@ class joindin::dotdeb {
         path        => '/bin:/usr/bin',
         command     => 'apt-get update',
         require     => Exec['dotdeb-apt-key'],
-        refreshonly => true;
     }
 }
