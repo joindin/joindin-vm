@@ -15,14 +15,22 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
         require  => Package["apache"],
     }
 
+    exec { 'updatephp':
+        path        => '/bin:/usr/bin:/sbin:/usr/sbin/',
+        command     => 'apt-get install php5 php5-curl -q -y --ignore-hold', #php5-xdebug
+        require     => Exec['update-apt'],
+    }
+
     # Install PHP modules
     php::module { 'mysql':
         require => Exec['update-apt'],
     }
-    php::module { ["xdebug"] :
-        # require => File["EpelRepo"],            # xdebug is in the epel repo
-        require => Exec['update-apt'],
-    }
+
+    # Latest dotdeb is missing Xdebug. Will bring it back when they add it
+    #php::module { ["xdebug"] :
+        ## require => File["EpelRepo"],            # xdebug is in the epel repo
+        #require => Exec['update-apt'],
+    #}
 
     # API requires curl
     php::module { 'curl':
@@ -87,13 +95,14 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
         require => File['joindin-ctokens'],
     }
 
-    file { "xdebug.ini" :
-        ensure => 'present',
-        path   => "/etc/php5/apache2/conf.d/30-xdebug.ini",
-        source => "puppet:///modules/joindin/xdebug.ini",
-        owner  => "root",
-        group  => "root",
-        require => [Package['php']],
-        notify  => Service['apache']
-    }
+    # Latest dotdeb is missing Xdebug. Will bring it back when they add it
+    #file { "xdebug.ini" :
+        #ensure => 'present',
+        #path   => "/etc/php5/apache2/conf.d/30-xdebug.ini",
+        #source => "puppet:///modules/joindin/xdebug.ini",
+        #owner  => "root",
+        #group  => "root",
+        #require => [Package['php']],
+        #notify  => Service['apache']
+    #}
 }
