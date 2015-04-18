@@ -6,7 +6,7 @@ class joindin::app (
 
     # Initialize database structure
     exec { 'init-db':
-        creates => '/tmp/.patched',
+        creates => '/home/vagrant/.patched',
         command => "/vagrant/joindin-api/scripts/patchdb.sh \
                     -t /vagrant/joindin-api -d $dbname -u $dbuser \
                     -p $dbpass -i && touch /tmp/.patched",
@@ -26,7 +26,7 @@ class joindin::app (
 
     # Generate seed data
     exec { 'seed-data':
-        creates => '/tmp/seed.sql',
+        creates => '/home/vagrant/seed.sql',
         command => 'php /vagrant/joindin-api/tools/dbgen/generate.php > /tmp/seed.sql',
         require => [
 	    Package['php'],
@@ -36,7 +36,7 @@ class joindin::app (
 
     # Seed database
     exec { 'seed-db':
-        creates => '/tmp/.seeded',
+        creates => '/home/vagrant/.seeded',
         command => "mysql $dbname < /tmp/seed.sql && touch /tmp/.seeded",
         require => [
                        Exec['init-db'],
@@ -92,7 +92,7 @@ class joindin::app (
 
     # Set some configuration for the VM
     exec { 'application-config-values':
-        creates => '/tmp/.config_values_set',
+        creates => '/home/vagrant/.config_values_set',
         command => "sh /vagrant/scripts/fixConfig.sh && touch /tmp/.config_values_set",
         require => [
             File['application-config'],
