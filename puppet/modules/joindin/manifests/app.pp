@@ -37,7 +37,7 @@ class joindin::app (
     # Seed database
     exec { 'seed-db':
         creates => '/home/vagrant/.seeded',
-        command => "mysql $dbname < /tmp/seed.sql && touch /home/vagrant/.seeded",
+        command => "mysql $dbname < /home/vagrant/seed.sql && touch /home/vagrant/.seeded",
         require => [
                        Exec['init-db'],
                        Exec['seed-data'],
