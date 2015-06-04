@@ -18,6 +18,7 @@ class joindin::sql ($dbuser = 'joindin', $dbpass = 'password', $dbname = 'joindi
         source  => "puppet:///modules/joindin/mysql_overrides.cnf",
         owner   => "root",
         group   => "root",
+        require => Package['mysql'],
         notify  => Service['mysql']
     }
 }
