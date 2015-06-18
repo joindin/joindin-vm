@@ -8,6 +8,9 @@ chdir($path);
 
 system('git pull upstream master');
 
+system('git submodule init');
+system('git submodule update');
+
 array_walk($repositoryToUpdate, 'updateRepository');
 
 function updateRepository($repoName) {
