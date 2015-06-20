@@ -27,10 +27,10 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
     }
 
     # Latest dotdeb is missing Xdebug. Will bring it back when they add it
-    #php::module { ["xdebug"] :
-        ## require => File["EpelRepo"],            # xdebug is in the epel repo
-        #require => Exec['update-apt'],
-    #}
+    php::module { ["xdebug"] :
+        # require => File["EpelRepo"],            # xdebug is in the epel repo
+        require => Exec['update-apt'],
+    }
 
     # API requires curl
     php::module { 'curl':
