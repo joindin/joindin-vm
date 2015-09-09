@@ -97,14 +97,13 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
         require => File['joindin-ctokens'],
     }
 
-    # Latest dotdeb is missing Xdebug. Will bring it back when they add it
-    #file { "xdebug.ini" :
-        #ensure => 'present',
-        #path   => "/etc/php5/apache2/conf.d/30-xdebug.ini",
-        #source => "puppet:///modules/joindin/xdebug.ini",
-        #owner  => "root",
-        #group  => "root",
-        #require => [Package['php']],
-        #notify  => Service['apache']
-    #}
+    file { "xdebug.ini" :
+        ensure => 'present',
+        path   => "/etc/php5/apache2/conf.d/30-xdebug.ini",
+        source => "puppet:///modules/joindin/xdebug.ini",
+        owner  => "root",
+        group  => "root",
+        require => [Package['php']],
+        notify  => Service['apache']
+    }
 }
