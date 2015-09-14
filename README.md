@@ -5,6 +5,15 @@ Quick way to get the platform for joind.in development set up
 
 This repository provides a vagrant virtual machine so you can start contributing quickly. Joind.in is a big project, so there a few parts involved.
 
+### Welcome
+
+Joind.in welcomes all contributors regardless of your ability or experience. We especially welcome
+you if you are new to Open Source development and will provide a helping hand. To ensure that
+everyone understands what we expect from our community, our projects have a [Contributor Code of
+Conduct](CODE_OF_CONDUCT.md) and by participating in the development of joind.in you agree to abide
+by its terms.
+
+
 ## Getting Started
 1. Install requirements. (Note: these are not required by joind.in itself, but are required for this quick start guide.)
    - VirtualBox and the VirtualBox Extension Pack (https://www.virtualbox.org/) (version 4.0 or later)
