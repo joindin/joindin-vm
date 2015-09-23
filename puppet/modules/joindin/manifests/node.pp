@@ -1,6 +1,8 @@
 class joindin::node {
 
-    include nodejs
+    class { 'nodejs':
+      make_install => false
+    }
 
     package { 'grunt-cli':
       provider => 'npm',
