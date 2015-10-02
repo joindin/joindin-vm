@@ -75,7 +75,7 @@ by its terms.
          you@you> vagrant ssh
          vagrant@vm> mysql joindin -uroot
          
-- The database is also forwarded on port 3307 to your host, so you can also use:
+- The database is exposed on port 3306 of the VM, so you can also use:
   
         you@you> mysql -u joindin -h 10.223.175.44 -P 3306 -ppassword joindin
 
