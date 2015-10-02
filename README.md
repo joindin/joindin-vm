@@ -38,6 +38,12 @@ by its terms.
 
 		vagrant up
 
+1. Update the config files:
+
+         you@you> vagrant ssh
+         vagrant@vm> cd /vagrant
+         vagrant@vm> chmod +x ./scripts/fixConfig.sh
+         vagrant@vm> ./scripts/fixConfig.sh
 
 1. If you don't have the [hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)
    Vagrant plugin, then add hostname to /etc/hosts.
