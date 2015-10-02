@@ -37,7 +37,8 @@ by its terms.
 1. Start the VM
 
 		vagrant up
-
+		
+1. If you get asked for the vagrant user password during provisioning, try the password `vagrant`
 
 1. If you don't have the [hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)
    Vagrant plugin, then add hostname to /etc/hosts.
