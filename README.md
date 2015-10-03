@@ -37,7 +37,8 @@ by its terms.
 1. Start the VM
 
 		vagrant up
-
+		
+1. If you get asked for the vagrant user password during provisioning, try the password `vagrant`
 
 1. If you don't have the [hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)
    Vagrant plugin, then add hostname to /etc/hosts.
@@ -74,7 +75,7 @@ by its terms.
          you@you> vagrant ssh
          vagrant@vm> mysql joindin -uroot
          
-- The database is also forwarded on port 3307 to your host, so you can also use:
+- The database is exposed on port 3306 of the VM, so you can also use:
   
         you@you> mysql -u joindin -h 10.223.175.44 -P 3306 -ppassword joindin
 
