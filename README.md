@@ -60,8 +60,8 @@ by its terms.
 	- For the API: http://api.dev.joind.in/
 
 1. You can log to joind.in test site with those credentials for an admin account:
-		* Username: imaadmin
-		* Password: password
+	- Username: imaadmin
+	- Password: password
 
 1. For other users, [look at the dbgen documentation.](https://github.com/joindin/joindin-api/tree/master/tools/dbgen#usernames-and-passwords)
 
