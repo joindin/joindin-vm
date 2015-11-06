@@ -37,13 +37,15 @@ by its terms.
 1. Start the VM
 
 		vagrant up
-
+		
 1. Update the config files:
 
          you@you> vagrant ssh
          vagrant@vm> cd /vagrant
          vagrant@vm> chmod +x ./scripts/fixConfig.sh
          vagrant@vm> ./scripts/fixConfig.sh
+
+1. If you get asked for the vagrant user password during provisioning, try the password `vagrant`
 
 1. If you don't have the [hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)
    Vagrant plugin, then add hostname to /etc/hosts.
@@ -66,8 +68,8 @@ by its terms.
 	- For the API: http://api.dev.joind.in/
 
 1. You can log to joind.in test site with those credentials for an admin account:
-		* Username: imaadmin
-		* Password: password
+	- Username: imaadmin
+	- Password: password
 
 1. For other users, [look at the dbgen documentation.](https://github.com/joindin/joindin-api/tree/master/tools/dbgen#usernames-and-passwords)
 
@@ -80,7 +82,7 @@ by its terms.
          you@you> vagrant ssh
          vagrant@vm> mysql joindin -uroot
          
-- The database is also forwarded on port 3307 to your host, so you can also use:
+- The database is exposed on port 3306 of the VM, so you can also use:
   
         you@you> mysql -u joindin -h 10.223.175.44 -P 3306 -ppassword joindin
 
