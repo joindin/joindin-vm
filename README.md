@@ -38,13 +38,6 @@ by its terms.
 
 		vagrant up
 		
-1. Update the config files:
-
-         you@you> vagrant ssh
-         vagrant@vm> cd /vagrant
-         vagrant@vm> chmod +x ./scripts/fixConfig.sh
-         vagrant@vm> ./scripts/fixConfig.sh
-
 1. If you get asked for the vagrant user password during provisioning, try the password `vagrant`
 
 1. If you don't have the [hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)
@@ -139,6 +132,15 @@ If Vagrant complains that the command plugin does not exist, it's because your v
 On the latest Vagrant version, sometimes Vagrant stops before running Puppet. If if happens, you can run it manually.
 
         vagrant provision
+
+### Configuration is missing
+Update the config files:
+
+         you@you> vagrant ssh
+         vagrant@vm> cd /vagrant
+         vagrant@vm> chmod +x ./scripts/fixConfig.sh
+         vagrant@vm> ./scripts/fixConfig.sh
+
 
 ## Mailcatcher
 
