@@ -133,6 +133,15 @@ On the latest Vagrant version, sometimes Vagrant stops before running Puppet. If
 
         vagrant provision
 
+### Configuration is missing
+Update the config files:
+
+         you@you> vagrant ssh
+         vagrant@vm> cd /vagrant
+         vagrant@vm> chmod +x ./scripts/fixConfig.sh
+         vagrant@vm> ./scripts/fixConfig.sh
+
+
 ## Mailcatcher
 
 We use mailcatcher to grab emails before they leave the VM, and present them to you in a web interface so you can see what the system would be sending.  To check the mails that have been sent, visit [http://dev.joind.in:1080/](http://dev.joind.in:1080/) on your host machine.
