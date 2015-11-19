@@ -20,5 +20,5 @@ class joindin {
     include joindin::test
     include joindin::mailcatcher
     include joindin::node
-    include joindin::elastic
+    # include joindin::elastic
 }
