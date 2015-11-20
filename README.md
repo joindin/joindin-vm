@@ -26,6 +26,8 @@ by its terms.
 	- [joindin-vm](https://github.com/joindin/joindin-vm)
 1. Clone joindin-vm
 
+    Make sure that you are accessing your fork of the *joindin-vm* repo
+
 		git clone git@github.com:%%YourGitHubId%%/joindin-vm.git --recursive
 
 1. Execute the script that will clone the other 3 repository from your forks
