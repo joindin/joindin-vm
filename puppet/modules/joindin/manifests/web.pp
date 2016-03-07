@@ -112,4 +112,29 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
       ensure => 'link',
       target => "/vagrant/joind.in/src/inc",
     }
+
+    # set the Apache user to vagrant so that file uploads work
+    exec { "apache-user-change" :
+        command => "sed -i 's/APACHE_RUN_USER=www-data/APACHE_RUN_USER=vagrant/' /etc/apache2/envvars",
+        onlyif  => "grep -c 'APACHE_RUN_USER=www-data' /etc/apache2/envvars",
+        require => Package["apache2"],
+        notify  => Service["apache2"],
+    }
+
+    # Change the Apache group to be vagrant
+    exec { "apache-group-change" :
+        command => "sed -i 's/APACHE_RUN_GROUP=www-data/APACHE_RUN_GROUP=vagrant/' /etc/apache2/envvars",
+        onlyif  => "grep -c 'APACHE_RUN_GROUP=www-data' /etc/apache2/envvars",
+        require => Package["apache"],
+        notify  => Service["apache"],
+    }
+    
+    # change the Apache lock file permissions so that the vagrant owner can start Apache
+    file { 'apache-lockfile-permissions':
+        path => '/var/lock/apache2',
+        recurse => false,
+        owner => 'vagrant',
+        group => 'www-data',
+        mode => 0755,
+    }
 }
