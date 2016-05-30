@@ -2,9 +2,9 @@
 
 <VirtualHost *:<%= @port %>>
     ServerAdmin webmaster@<%= @name %>
-    DocumentRoot <%= @docroot %>joind.in/src
-    ServerName <%= @name %>
-    serveralias web1*.ngrok.com
+    DocumentRoot <%= @docroot %>joindin-legacy/src
+    ServerName legacy.<%= @name %>
+    serveralias legacy*.ngrok.com
 <% if @serveraliases != "" -%>
     ServerAlias <%= @serveraliases %>
 <% end -%>
@@ -58,7 +58,7 @@
 
 <virtualhost *:<%= @port %>>
     documentroot <%= @docroot %>joindin-web2/web
-    servername web2.<%= @name %>
+    servername <%= @name %>
     serveralias web2*.ngrok.com
 
     errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-error_log

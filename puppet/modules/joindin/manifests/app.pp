@@ -46,7 +46,7 @@ class joindin::app (
 
     # Set database config for application
     file { 'database-config':
-        path   => '/vagrant/joind.in/src/system/application/config/database.php',
+        path   => '/vagrant/joindin-legacy/src/system/application/config/database.php',
         content => template('joindin/database.php.erb'),
 		replace => false, 
     }
@@ -59,8 +59,8 @@ class joindin::app (
 
     # Set core config for application
     file { 'application-config':
-        path    => '/vagrant/joind.in/src/system/application/config/config.php',
-        source  => '/vagrant/joind.in/src/system/application/config/config.php.dist',
+        path    => '/vagrant/joindin-legacy/src/system/application/config/config.php',
+        source  => '/vagrant/joindin-legacy/src/system/application/config/config.php.dist',
         replace => no,
     }
 
