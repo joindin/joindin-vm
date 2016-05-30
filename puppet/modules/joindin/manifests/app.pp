@@ -34,6 +34,16 @@ class joindin::app (
 	]
     }
 
+    # Add SQL for API write tests
+    exec { 'api-tests-db':
+        creates => '/home/vagrant/.api-write-tests-sql-seeded',
+        command => "mysql -u $dbuser -p$dbpass $dbname < /vagrant/joindin-api/db/init_api_tests.sql && touch /home/vagrant/.api-write-tests-sql-seeded",
+        require => [
+           Exec['patch-db'],
+           Exec['seed-data'],
+        ],
+    }
+
     # Seed database
     exec { 'seed-db':
         creates => '/home/vagrant/.seeded',
