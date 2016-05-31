@@ -20,7 +20,7 @@ by its terms.
    - Ruby (http://www.ruby-lang.org/)
    - Vagrant (http://vagrantup.com/) version 1.5+
 1. Fork the following joind.in repositories:
-	- [joind.in](https://github.com/joindin/joind.in)
+	- [joindin-legacy](https://github.com/joindin/joindin-legacy)
 	- [joindin-api](https://github.com/joindin/joindin-api)
 	- [joindin-web2](https://github.com/joindin/joindin-web2)
 	- [joindin-vm](https://github.com/joindin/joindin-vm)
@@ -47,19 +47,19 @@ by its terms.
    
        If you are on Linux, run this:
 
-            (echo ; echo "10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in") | sudo tee -a /etc/hosts
+            (echo ; echo "10.223.175.44 dev.joind.in api.dev.joind.in legacy.dev.joind.in") | sudo tee -a /etc/hosts
        
        If you are on OSX, run this:
 
-            echo "10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in" | sudo tee -a /etc/hosts
+            echo "10.223.175.44 dev.joind.in api.dev.joind.in legacy.dev.joind.in" | sudo tee -a /etc/hosts
 
        If you are on Windows, run this on the cmd line
 
-            echo 10.223.175.44 dev.joind.in api.dev.joind.in web2.dev.joind.in >> %SYSTEMDRIVE%\Windows\System32\Drivers\Etc\Hosts
+            echo 10.223.175.44 dev.joind.in api.dev.joind.in legacy.dev.joind.in >> %SYSTEMDRIVE%\Windows\System32\Drivers\Etc\Hosts
 
 1. Browse to the sites
 	- For the joind.in site: http://dev.joind.in/
-	- For the responsive site: http://web2.dev.joind.in/
+	- For the legacy site: http://legacy.dev.joind.in/
 	- For the API: http://api.dev.joind.in/
 
 1. You can log to joind.in test site with those credentials for an admin account:
@@ -103,15 +103,15 @@ To install the testing tools in the VM
 1. Wait for the testing tools to be installed. This will take a few minutes.
 1. Run the joind.in tests with this command from inside the VM
 ```
-        cd /vagrant/joind.in && phing
+        cd /vagrant/joindin-web2 && phing
 ```
 1. Run the joindin-api tests with this command from inside the VM
 ```
         cd /vagrant/joindin-api && phing
 ```
-1. Run the joindin-web2 tests with this command from inside the VM
+1. Run the joindin-legacy tests with this command from inside the VM
 ```
-        cd /vagrant/joindin-web2 && phing
+        cd /vagrant/joindin-legacy && phing
 ```
 
 ## Troubleshooting

@@ -110,7 +110,7 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
     # symlink for icons
     file { "/vagrant/joindin-web2/web/inc":
       ensure => 'link',
-      target => "/vagrant/joind.in/src/inc",
+      target => "/vagrant/joindin-legacy/src/inc",
     }
 
     # set the Apache user to vagrant so that file uploads work
