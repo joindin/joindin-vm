@@ -17,11 +17,15 @@ class joindin::web ($phpmyadmin = false, $host = 'dev.joind.in', $port = 80) {
 
     exec { 'updatephp':
         path        => '/bin:/usr/bin:/sbin:/usr/sbin/',
-        command     => 'apt-get install php5 php5-curl -q -y --ignore-hold', #php5-xdebug
+        command     => 'apt-get install php5 php5-curl php5-gd -q -y --ignore-hold', #php5-xdebug
         require     => Exec['update-apt'],
     }
 
     # Install PHP modules
+    php::module { 'gd':
+        require => Exec['update-apt'],
+    }
+
     php::module { 'mysql':
         require => Exec['update-apt'],
     }
