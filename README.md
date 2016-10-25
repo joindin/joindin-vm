@@ -19,22 +19,30 @@ by its terms.
    - VirtualBox and the VirtualBox Extension Pack (https://www.virtualbox.org/) (version 4.0 or later)
    - Ruby (http://www.ruby-lang.org/)
    - Vagrant (http://vagrantup.com/) version 1.5+
-1. Fork the following joind.in repositories:
+
+1. Make your own github fork of the following joind.in repositories:
 	- [joindin-legacy](https://github.com/joindin/joindin-legacy)
 	- [joindin-api](https://github.com/joindin/joindin-api)
 	- [joindin-web2](https://github.com/joindin/joindin-web2)
 	- [joindin-vm](https://github.com/joindin/joindin-vm)
+	
 1. Clone joindin-vm
 
     Make sure that you are accessing your fork of the *joindin-vm* repo
 
-		git clone git@github.com:%%YourGitHubId%%/joindin-vm.git --recursive
+		git clone git@github.com:{YourGitHubId}/joindin-vm.git --recursive
+		
+	For example:
+	
+	    git clone git@github.com:defunkt/joindin-vm.git --recursive
 
 1. Execute the script that will clone the other 3 repository from your forks
 
 		cd joindin-vm
 		php scripts/cloneRepository.php
-
+		
+    If you are getting Git and PHP warnings and you have previously forked joind.in before the introduction of web2,
+    make sure that your fork of `joindin-legacy` is not called `joind.in`.
 
 1. Start the VM
 
@@ -49,7 +57,7 @@ by its terms.
 
             (echo ; echo "10.223.175.44 dev.joind.in api.dev.joind.in legacy.dev.joind.in") | sudo tee -a /etc/hosts
        
-       If you are on OSX, run this:
+       If you are on macOS, run this:
 
             echo "10.223.175.44 dev.joind.in api.dev.joind.in legacy.dev.joind.in" | sudo tee -a /etc/hosts
 
