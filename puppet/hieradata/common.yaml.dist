@@ -15,6 +15,6 @@ joindin::sql:dbpass: 'password'
 joindin::web::phpmyadmin: true
 
 # True if the test suite needs to be installed, false for faster provisioning with no tests
-joindin::test::tests: false
+joindin::test::tests: true
 
 debug: true

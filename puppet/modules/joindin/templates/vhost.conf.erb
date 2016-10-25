@@ -2,8 +2,9 @@
 
 <VirtualHost *:<%= @port %>>
     ServerAdmin webmaster@<%= @name %>
-    DocumentRoot <%= @docroot %>joind.in/src
-    ServerName <%= @name %>
+    DocumentRoot <%= @docroot %>joindin-legacy/src
+    ServerName legacy.<%= @name %>
+    serveralias legacy*.ngrok.com
 <% if @serveraliases != "" -%>
     ServerAlias <%= @serveraliases %>
 <% end -%>
@@ -32,10 +33,10 @@
 <virtualhost *:<%= @port %>>
     documentroot <%= @docroot %>joindin-api/src/public/
     servername api.<%= @name %>
+    serveralias api*.ngrok.com
 
     errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-error_log
     customlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-access_log common
-    setenv joindin_debug on
 
 	<directory <%= @docroot %>joindin-api/src/public/>
                 <ifmodule mod_rewrite.c>
@@ -57,11 +58,11 @@
 
 <virtualhost *:<%= @port %>>
     documentroot <%= @docroot %>joindin-web2/web
-    servername web2.<%= @name %>
+    servername <%= @name %>
+    serveralias web2*.ngrok.com
 
     errorlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-error_log
     customlog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-access_log common
-    setenv joindin_debug on
 
    <directory <%= @docroot %>joindin-web2/web>
                 <ifmodule mod_rewrite.c>

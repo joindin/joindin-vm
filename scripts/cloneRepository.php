@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-$repositoryToClone = array('joind.in', 'joindin-api', 'joindin-web2');
+$repositoryToClone = array('joindin-legacy', 'joindin-api', 'joindin-web2');
 
 $path = realpath(__DIR__ . '/../');
 chdir($path);

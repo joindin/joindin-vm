@@ -6,10 +6,10 @@ class joindin::app (
 
     # Initialize database structure
     exec { 'init-db':
-        creates => '/tmp/.patched',
+        creates => '/home/vagrant/.patched',
         command => "/vagrant/joindin-api/scripts/patchdb.sh \
                     -t /vagrant/joindin-api -d $dbname -u $dbuser \
-                    -p $dbpass -i && touch /tmp/.patched",
+                    -p $dbpass -i && touch /home/vagrant/.patched",
         require => Exec['create-db'],
     }
 
@@ -26,18 +26,28 @@ class joindin::app (
 
     # Generate seed data
     exec { 'seed-data':
-        creates => '/tmp/seed.sql',
-        command => 'php /vagrant/joindin-api/tools/dbgen/generate.php > /tmp/seed.sql',
+        creates => '/home/vagrant/seed.sql',
+        command => 'php /vagrant/joindin-api/tools/dbgen/generate.php > /home/vagrant/seed.sql',
         require => [
 	    Package['php'],
 	    Exec['init-db'],
 	]
     }
 
+    # Add SQL for API write tests
+    exec { 'api-tests-db':
+        creates => '/home/vagrant/.api-write-tests-sql-seeded',
+        command => "mysql -u $dbuser -p$dbpass $dbname < /vagrant/joindin-api/db/init_api_tests.sql && touch /home/vagrant/.api-write-tests-sql-seeded",
+        require => [
+           Exec['patch-db'],
+           Exec['seed-data'],
+        ],
+    }
+
     # Seed database
     exec { 'seed-db':
-        creates => '/tmp/.seeded',
-        command => "mysql $dbname < /tmp/seed.sql && touch /tmp/.seeded",
+        creates => '/home/vagrant/.seeded',
+        command => "mysql -u $dbuser -p$dbpass $dbname < /home/vagrant/seed.sql && touch /home/vagrant/.seeded",
         require => [
                        Exec['init-db'],
                        Exec['seed-data'],
@@ -46,7 +56,7 @@ class joindin::app (
 
     # Set database config for application
     file { 'database-config':
-        path   => '/vagrant/joind.in/src/system/application/config/database.php',
+        path   => '/vagrant/joindin-legacy/src/system/application/config/database.php',
         content => template('joindin/database.php.erb'),
 		replace => false, 
     }
@@ -59,16 +69,9 @@ class joindin::app (
 
     # Set core config for application
     file { 'application-config':
-        path    => '/vagrant/joind.in/src/system/application/config/config.php',
-        source  => '/vagrant/joind.in/src/system/application/config/config.php.dist',
+        path    => '/vagrant/joindin-legacy/src/system/application/config/config.php',
+        source  => '/vagrant/joindin-legacy/src/system/application/config/config.php.dist',
         replace => no,
-    }
-
-    # Set some configuration for the VM
-    exec { 'application-config-values':
-        creates => '/tmp/.config_values_set', 
-        command => "sh /vagrant/scripts/fixConfig.sh && touch /tmp/.config_values_set", 
-        require => File['application-config'],
     }
 
     # Create directory for user-generated content
@@ -76,9 +79,36 @@ class joindin::app (
         ensure  => directory,
         path    => '/tmp/ctokens',
         mode    => '0644',
-        owner   => 'apache',
-        group   => 'apache',
+        owner   => 'vagrant',
+        group   => 'www-data',
         require => Service['apache'],
+    }
+
+    # Configure the web2
+    file { 'web2-config':
+        ensure  => present,
+        owner   => 'vagrant',
+        path    => '/vagrant/joindin-web2/config/config.php',
+        source  => "/vagrant/joindin-web2/config/config.php.dist",
+        replace => no,
+    }
+
+    # Set core config for api
+    file { 'api-config':
+        path    => '/vagrant/joindin-api/src/config.php',
+        source  => '/vagrant/joindin-api/src/config.php.dist',
+        replace => no,
+    }
+
+    # Set some configuration for the VM
+    exec { 'application-config-values':
+        creates => '/home/vagrant/.config_values_set',
+        command => "sh /vagrant/scripts/fixConfig.sh && touch /home/vagrant/.config_values_set",
+        require => [
+            File['application-config'],
+            File['web2-config'],
+            File['api-config'],
+        ]
     }
 
 }
