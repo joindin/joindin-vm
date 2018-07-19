@@ -56,6 +56,8 @@ services:
     image: mysql:5.5
     ports: 
         - "33060:3306"
+    volumes:
+        - ./joindin-api:/var/joindin
     networks:
         - joindin
     environment:
