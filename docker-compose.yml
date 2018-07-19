@@ -1,0 +1,67 @@
+version: '3'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "8000:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+        - joindin
+
+  web2:
+    build: .
+    expose:
+        - "80"
+    environment:
+        VIRTUAL_HOST: "dev.joind.in,dev.joindin.localhost"
+        APACHE_DOCUMENT_ROOT: /var/www/html/web
+    networks:
+        - joindin
+    links:
+        - api
+    volumes:
+        - ./joindin-web2:/var/www/html
+
+  legacy:
+    build: .
+    expose:
+        - "80"
+    links:
+        - db
+    environment:
+        VIRTUAL_HOST: legacy.joind.in,legacy.joindin.localhost
+        APACHE_DOCUMENT_ROOT: /var/www/html
+    volumes:
+        - ./joindin-legacy/src:/var/www/html
+    networks:
+        - joindin
+
+  api:
+    build: .
+    expose:
+        - "80"
+    links:
+        - db
+    environment:
+        VIRTUAL_HOST: api.joind.in,api.joindin.localhost
+        APACHE_DOCUMENT_ROOT: /var/www/html/src/public
+    volumes:
+        - ./joindin-api:/var/www/html
+    networks:
+      joindin:
+          aliases:
+             - "api.dev.joind.in"
+  db:
+    image: mysql:5.5
+    ports: 
+        - "33060:3306"
+    networks:
+        - joindin
+    environment:
+        MYSQL_ROOT_PASSWORD: joindin
+        MYSQL_USER: joindin
+        MYSQL_PASSWORD: pleasechangeme
+
+networks:
+  joindin:
