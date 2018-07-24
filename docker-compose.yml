@@ -16,10 +16,12 @@ services:
     environment:
         VIRTUAL_HOST: "dev.joind.in,dev.joindin.localhost"
         APACHE_DOCUMENT_ROOT: /var/www/html/web
+        REDIS_HOST: redis
     networks:
         - joindin
     links:
         - api
+        - redis
     volumes:
         - ./joindin-web2:/var/www/html
 
@@ -46,6 +48,9 @@ services:
     environment:
         VIRTUAL_HOST: api.joind.in,api.joindin.localhost
         APACHE_DOCUMENT_ROOT: /var/www/html/src/public
+        MYSQL_HOST: db
+        MYSQL_USER: root
+        MYSQL_PASSWORD: joindin
     volumes:
         - ./joindin-api:/var/www/html
     networks:
@@ -64,6 +69,13 @@ services:
         MYSQL_ROOT_PASSWORD: joindin
         MYSQL_USER: joindin
         MYSQL_PASSWORD: pleasechangeme
+
+  redis:
+    image: redis:4.0
+    expose:
+        - "6379"
+    networks:
+        - joindin
 
 networks:
   joindin:
