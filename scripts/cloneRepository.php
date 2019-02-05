@@ -17,6 +17,7 @@ $gitUsername = getGitUsername($remoteString, $useHttps);
 
 array_walk($repositoryToClone, 'cloneRepository', array($gitUsername, $useHttps));
 array_walk($repositoryToClone, 'addUpstreamRemote', $useHttps);
+array_walk($repositoryToClone, 'installViaComposer');
 
 
 function getGitUsername($remoteString, $useHttps) {
@@ -69,4 +70,21 @@ function addUpstreamRemote($repoName, $index, $useHttps) {
 function isHttpsClone($remote) {
 	$pattern = '/\s*Fetch URL:\s+https:\/\//';
 	return preg_match($pattern, $remote);
+}
+
+function installViaComposer($repoName)
+{
+    $windowsAndNixHappyPath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $repoName;
+    chdir($windowsAndNixHappyPath);
+
+    if (!file_exists('composer.lock')) {
+        return;
+    }
+
+    echo "Installing dev dependencies for {$repoName}\n";
+
+    $remoteCommand = 'composer install';
+
+    echo $remoteCommand. "\n";
+    system($remoteCommand);
 }
