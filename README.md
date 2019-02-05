@@ -19,6 +19,7 @@ by its terms.
    - VirtualBox and the VirtualBox Extension Pack (https://www.virtualbox.org/) (version 4.0 or later)
    - Ruby (http://www.ruby-lang.org/)
    - Vagrant (http://vagrantup.com/) version 1.5+
+   - Composer (https://getcomposer.org/)
 
 1. Make your own github fork of the following joind.in repositories:
 	- [joindin-legacy](https://github.com/joindin/joindin-legacy)
