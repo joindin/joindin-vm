@@ -14,3 +14,4 @@ joindin-web2/
 Guardfile
 .vagrant.v*
 puppet/hieradata/common.yaml
+/vendor/

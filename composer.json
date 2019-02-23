@@ -1,0 +1,10 @@
+{
+    "name": "joindin/joindin-vm",
+    "description": "The dev VM for joindin",
+    "license": "BSD-3-Clause",
+    "type": "project",
+    "require": {},
+    "require-dev": {
+        "laravel/homestead": "^8.1"
+    }
+}
