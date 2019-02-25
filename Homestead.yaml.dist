@@ -1,0 +1,20 @@
+ip: 192.168.10.10
+memory: 2048
+cpus: 1
+provider: virtualbox
+authorize: ~/.ssh/id_rsa.pub
+keys:
+  - ~/.ssh/id_rsa
+folders:
+  - map: /Users/eric/dev/opensource/joindin/joindin-vm
+    to: /home/vagrant/code
+sites:
+  - map: legacy.dev.joind.in
+    to: /home/vagrant/code/joindin-legacy/src
+  - map: api.dev.joind.in
+    to: /home/vagrant/code/joindin-api/src/public
+  - map: dev.joind.in
+    to: /home/vagrant/code/joindin-web2/web
+databases:
+  - homestead
+name: joindin-vm

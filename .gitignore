@@ -15,3 +15,4 @@ Guardfile
 .vagrant.v*
 puppet/hieradata/common.yaml
 /vendor/
+Homestead.yaml
