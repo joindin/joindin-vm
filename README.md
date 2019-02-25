@@ -15,9 +15,8 @@ by its terms.
 ## Getting Started
 
 1. Install requirements. (Note: these are not required by joind.in itself, but are required for this quick start guide.)
-   - VirtualBox and the VirtualBox Extension Pack (https://www.virtualbox.org/) (version 4.0 or later)
-   - Ruby (http://www.ruby-lang.org/)
-   - Vagrant (http://vagrantup.com/) version 1.5+
+   - VirtualBox and the VirtualBox Extension Pack (https://www.virtualbox.org/) (version 6.0 or later)
+   - Vagrant (http://vagrantup.com/) version 2.x+
    - Composer (https://getcomposer.org/)
 
 1. Make your own github fork of the following joind.in repositories:
@@ -50,6 +49,16 @@ by its terms.
 
     If you are getting Git and PHP warnings and you have previously forked joind.in before the introduction of web2,
     make sure that your fork of `joindin-legacy` is not called `joind.in`.
+
+1. Execute the Homestead `make` command:
+
+    ```sh
+    cd joindin-vm
+    php vendor/bin/homestead make
+    ```
+
+    This copies the `Homestead.yaml.example` file to `Homestead.yaml` (which is ignored from VCS) that has computer 
+    specific paths configured for the joind.in repositories. 
 
 1. Start the VM
 
@@ -191,9 +200,9 @@ vagrant@vm> chmod +x ./scripts/fixConfig.sh
 vagrant@vm> ./scripts/fixConfig.sh
 ```
 
-## Mailcatcher
+## Mailhog
 
-We use mailcatcher to grab emails before they leave the VM, and present them to you in a web interface so you can see what the system would be sending.  To check the mails that have been sent, visit [http://dev.joind.in:1080/](http://dev.joind.in:1080/) on your host machine.
+We use mailhog to grab emails before they leave the VM, and present them to you in a web interface so you can see what the system would be sending.  To check the mails that have been sent, visit [http://dev.joind.in:8025/](http://dev.joind.in:8025/) on your host machine.
 
 ## Xdebug/PHPStorm Setup
 
