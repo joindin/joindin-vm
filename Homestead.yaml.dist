@@ -6,7 +6,7 @@ authorize: ~/.ssh/id_rsa.pub
 keys:
   - ~/.ssh/id_rsa
 folders:
-  - map: /Users/eric/dev/opensource/joindin/joindin-vm
+  - map: /Full/Path/To/joindin-vm
     to: /home/vagrant/code
 sites:
   - map: legacy.dev.joind.in
