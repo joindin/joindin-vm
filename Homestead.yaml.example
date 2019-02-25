@@ -7,14 +7,14 @@ keys:
   - ~/.ssh/id_rsa
 folders:
   - map: /Full/Path/To/joindin-vm
-    to: /home/vagrant/code
+    to: /home/vagrant/joindin
 sites:
   - map: legacy.dev.joind.in
-    to: /home/vagrant/code/joindin-legacy/src
+    to: /home/vagrant/joindin-vm/joindin-legacy/src
   - map: api.dev.joind.in
-    to: /home/vagrant/code/joindin-api/src/public
+    to: /home/vagrant/joindin-vm/joindin-api/src/public
   - map: dev.joind.in
-    to: /home/vagrant/code/joindin-web2/web
+    to: /home/vagrant/joindin-vm/joindin-web2/web
 databases:
-  - homestead
+  - joindin
 name: joindin-vm
