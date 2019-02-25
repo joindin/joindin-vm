@@ -13,3 +13,11 @@
 
 # Import dev DB
 php ~/code/joindin-api/tools/dbgen/generate.php | mysql -u homestead -psecret joindin
+
+## Install server applications
+
+# Install Wireshark
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y \
+    -o Dpkg::Options::="--force-confdef" \
+    -o Dpkg::Options::="--force-confold" \
+    install tshark -y

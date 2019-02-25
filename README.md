@@ -263,6 +263,4 @@ On your local machine, in the joindin-vm directory, you can use this command to 
 wireshark -k -i <(vagrant ssh -c "sudo dumpcap -P -i any -w - -f 'not tcp port 22'" -- -ntt)
 ```
 
-(note that on OS X, you need to start X11 first)
-
 Full details are [in this article](http://www.lornajane.net/posts/2014/wireshark-capture-on-remote-server)
