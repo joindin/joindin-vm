@@ -8,8 +8,8 @@
             "php": "7.3.2"
         }
     },
-    "require": {},
-    "require-dev": {
+    "require": {
         "laravel/homestead": "^8.1"
-    }
+    },
+    "require-dev": {}
 }

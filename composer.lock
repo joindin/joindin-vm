@@ -4,9 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "904d2f968fcb968bf7e163b9b99b02ca",
-    "packages": [],
-    "packages-dev": [
+    "content-hash": "eedc15e51320c71421b82cd74e886d5f",
+    "packages": [
         {
             "name": "laravel/homestead",
             "version": "v8.1.0",
@@ -423,6 +422,7 @@
             "time": "2019-01-16T20:35:37+00:00"
         }
     ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
