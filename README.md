@@ -15,9 +15,13 @@ by its terms.
 ## Getting Started
 
 1. Install requirements. (Note: these are not required by joind.in itself, but are required for this quick start guide.)
-   - VirtualBox and the VirtualBox Extension Pack (https://www.virtualbox.org/) (version 6.0 or later)
-   - Vagrant (http://vagrantup.com/) version 2.x+
-   - Composer (https://getcomposer.org/)
+
+    - VirtualBox and the VirtualBox Extension Pack (https://www.virtualbox.org/) (version 6.0 or later)
+    - Vagrant (http://vagrantup.com/) version 2.x+
+        - Recommended plugins:
+            - vagrant-hostsupdater
+            - vagrant-vbguest
+    - Composer (https://getcomposer.org/)
 
 1. Make your own github fork of the following joind.in repositories:
 
