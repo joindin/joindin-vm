@@ -7,7 +7,7 @@ keys:
   - ~/.ssh/id_rsa
 folders:
   - map: /Full/Path/To/joindin-vm
-    to: /home/vagrant/joindin
+    to: /home/vagrant/joindin-vm
 sites:
   - map: legacy.dev.joind.in
     to: /home/vagrant/joindin-vm/joindin-legacy/src
