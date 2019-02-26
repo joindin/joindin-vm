@@ -226,6 +226,22 @@ relevant repo.  If all is setup correctly, PHPStorm should prompt you to select
 the local file that the remote file maps to.  Simply select the local index.php
 file for the repo and you should be good to go.
 
+If testing from the command-line and not a browser:
+
+- Enable xdebug:
+
+    ```sh
+    vagrant ssh
+    xon
+    ```
+
+- Disable xdebug:
+
+    ```sh
+    vagrant ssh
+    xoff
+    ```
+
 ## Packaging the box from event with slow connection
 
 If you are at an event with a slow connection it's possible to package the box and copy it on a usb key. This way others don't need to download it.
