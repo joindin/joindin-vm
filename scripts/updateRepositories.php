@@ -1,9 +1,9 @@
 #!/usr/bin/env php
 <?php
 
-$repositoryToUpdate = array('joindin-web2', 'joindin-api', 'joindin-legacy');
+$repositoryToUpdate = ['joindin-web2', 'joindin-api', 'joindin-legacy'];
 
-$path = realpath(__DIR__ . '/../');
+$path = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR);
 chdir($path);
 
 system('git pull upstream master');
@@ -17,14 +17,14 @@ array_walk($repositoryToUpdate, 'installViaComposer');
 function updateRepository($repoName) {
 	echo "Updating repo {$repoName}\n";
 	chdir($repoName);
-	system("git pull upstream master");
-	chdir('../');
+	system('git pull upstream master');
+	chdir(dirname(__DIR__));
 }
 
 function installViaComposer($repoName)
 {
-    $windowsAndNixHappyPath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $repoName;
-    chdir($windowsAndNixHappyPath);
+    $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . $repoName;
+    chdir($path);
 
     if (!file_exists('composer.lock')) {
         return;
