@@ -106,8 +106,8 @@ by its terms.
 
 *Notes:*
 
-- The joind.in directory you cloned will be mounted inside the VM at `/vagrant`
-- You can develop by editing the files you cloned in the IDE of you choice.
+- The joind.in directory you cloned will be mounted inside the VM at `/home/joindin-vm`
+- You can develop by editing the files you cloned in the IDE of your choice.
 - The database is running inside the VM. You can get to it with the following commands:
 
     ```sh
@@ -205,7 +205,7 @@ Update the config files:
 
 ```sh
 you@you> vagrant ssh
-vagrant@vm> cd /vagrant
+vagrant@vm> cd ~/joindin-vm
 vagrant@vm> chmod +x ./scripts/fixConfig.sh
 vagrant@vm> ./scripts/fixConfig.sh
 ```
