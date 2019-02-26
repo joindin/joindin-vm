@@ -2,7 +2,7 @@
 <?php
 declare(strict_types=1);
 
-$repositoryToClone = array('joindin-legacy', 'joindin-api', 'joindin-web2');
+$repositoryToClone = ['joindin-legacy', 'joindin-api', 'joindin-web2'];
 
 $path = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR);
 chdir($path);
@@ -16,7 +16,7 @@ $useHttps = isHttpsClone($remoteString);
 
 $gitUsername = getGitUsername($remoteString, $useHttps);
 
-array_walk($repositoryToClone, 'cloneRepository', array($gitUsername, $useHttps));
+array_walk($repositoryToClone, 'cloneRepository', [$gitUsername, $useHttps]);
 array_walk($repositoryToClone, 'addUpstreamRemote', $useHttps);
 array_walk($repositoryToClone, 'installViaComposer');
 
