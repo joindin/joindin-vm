@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+declare(strict_types=1);
 
 $repositoryToUpdate = ['joindin-web2', 'joindin-api', 'joindin-legacy'];
 
@@ -14,14 +15,15 @@ system('git submodule update');
 array_walk($repositoryToUpdate, 'updateRepository');
 array_walk($repositoryToUpdate, 'installViaComposer');
 
-function updateRepository($repoName) {
+function updateRepository(string $repoName): void
+{
 	echo "Updating repo {$repoName}\n";
 	chdir($repoName);
 	system('git pull upstream master');
 	chdir(dirname(__DIR__));
 }
 
-function installViaComposer($repoName)
+function installViaComposer(string $repoName): void
 {
     $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . $repoName;
     chdir($path);
