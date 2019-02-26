@@ -3,7 +3,7 @@
 
 $repositoryToClone = array('joindin-legacy', 'joindin-api', 'joindin-web2');
 
-$path = realpath(__DIR__ . '/../');
+$path = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR);
 chdir($path);
 
 echo "Preparing the submodules\n";
@@ -64,7 +64,7 @@ function addUpstreamRemote($repoName, $index, $useHttps) {
 
 	echo $remoteCommand. "\n";
 	system($remoteCommand);
-	chdir('../');
+    chdir(dirname(__DIR__));
 }
 
 function isHttpsClone($remote) {
@@ -74,8 +74,8 @@ function isHttpsClone($remote) {
 
 function installViaComposer($repoName)
 {
-    $windowsAndNixHappyPath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $repoName;
-    chdir($windowsAndNixHappyPath);
+    $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . $repoName;
+    chdir($path);
 
     if (!file_exists('composer.lock')) {
         return;
