@@ -12,6 +12,9 @@ system('git pull upstream master');
 system('git submodule init');
 system('git submodule update');
 
+echo "Installing dev dependencies for joindin-vm\n";
+system('composer install');
+
 array_walk($repositoryToUpdate, 'updateRepository');
 array_walk($repositoryToUpdate, 'installViaComposer');
 
