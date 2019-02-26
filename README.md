@@ -112,13 +112,19 @@ by its terms.
 
     ```sh
     you@you> vagrant ssh
-    vagrant@vm> mysql joindin -uroot
+    vagrant@vm> mysql joindin -u joindin
     ```
 
 - The database is exposed on port 3306 of the VM, so you can also use:
 
     ```sh
     you@you> mysql -u joindin -h 192.168.10.10 -P 3306 -ppassword joindin
+    ```
+
+    Or by its external port, 33060, on localhost:
+
+    ```sh
+    you@you> mysql -u joindin -h 127.0.01 -P 33060 -ppassword joindin
     ```
 
 - To stop the VM so that you can work on it later, issue the following command
