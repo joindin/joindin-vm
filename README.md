@@ -78,19 +78,19 @@ by its terms.
     If you are on Linux, run this:
 
     ```sh
-    (echo ; echo "10.223.175.44 dev.joind.in api.dev.joind.in legacy.dev.joind.in") | sudo tee -a /etc/hosts
+    (echo ; echo "192.168.10.10 dev.joind.in api.dev.joind.in legacy.dev.joind.in") | sudo tee -a /etc/hosts
     ```
 
     If you are on macOS, run this:
 
     ```sh
-    echo "10.223.175.44 dev.joind.in api.dev.joind.in legacy.dev.joind.in" | sudo tee -a /etc/hosts
+    echo "192.168.10.10 dev.joind.in api.dev.joind.in legacy.dev.joind.in" | sudo tee -a /etc/hosts
     ```
 
     If you are on Windows, run this on the cmd line
 
     ```bat
-    echo 10.223.175.44 dev.joind.in api.dev.joind.in legacy.dev.joind.in >> %SYSTEMDRIVE%\Windows\System32\Drivers\Etc\Hosts
+    echo 192.168.10.10 dev.joind.in api.dev.joind.in legacy.dev.joind.in >> %SYSTEMDRIVE%\Windows\System32\Drivers\Etc\Hosts
     ```
 
 1. Browse to the sites
@@ -118,7 +118,7 @@ by its terms.
 - The database is exposed on port 3306 of the VM, so you can also use:
 
     ```sh
-    you@you> mysql -u joindin -h 10.223.175.44 -P 3306 -ppassword joindin
+    you@you> mysql -u joindin -h 192.168.10.10 -P 3306 -ppassword joindin
     ```
 
 - To stop the VM so that you can work on it later, issue the following command
