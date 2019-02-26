@@ -20,7 +20,7 @@ by its terms.
     - Vagrant (http://vagrantup.com/) version 2.x+
         - Recommended plugins:
             - vagrant-hostsupdater
-            - vagrant-vbguest
+            - vagrant-vbguest (if using VirtualBox)
     - Composer (https://getcomposer.org/)
 
 1. Make your own github fork of the following joind.in repositories:
