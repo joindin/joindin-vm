@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+declare(strict_types=1);
 
 $repositoryToClone = array('joindin-legacy', 'joindin-api', 'joindin-web2');
 
@@ -20,8 +21,8 @@ array_walk($repositoryToClone, 'addUpstreamRemote', $useHttps);
 array_walk($repositoryToClone, 'installViaComposer');
 
 
-function getGitUsername($remoteString, $useHttps) {
-
+function getGitUsername(string $remoteString, bool $useHttps): string
+{
 	if ($useHttps) {
 		$pattern = '/\s*Fetch URL:\s+https:\/\/github\.com\/(.+)\//';
 	} else {
@@ -29,16 +30,16 @@ function getGitUsername($remoteString, $useHttps) {
 	}
 
 	$found = preg_match($pattern, $remoteString, $matches);
-	if (!$found || 2 != count($matches)) {
+	if (!$found || 2 !== count($matches)) {
 		die('Failed to extract the username from git origin');
 	}
 
 	return $matches[1];
 }
 
-function cloneRepository($repoName, $index, $values) {
-	$gitUsername = $values[0];
-	$useHttps = $values[1];
+function cloneRepository(string $repoName, int $index, array $values): void
+{
+	[$gitUsername, $useHttps] = $values;
 
 	echo "Cloning {$repoName}\n";
 
@@ -52,7 +53,8 @@ function cloneRepository($repoName, $index, $values) {
 	system($cloneCommand);
 }
 
-function addUpstreamRemote($repoName, $index, $useHttps) {
+function addUpstreamRemote(string $repoName, int $index, bool $useHttps): void
+{
 	echo "Adding upstream remote to {$repoName}\n";
 	chdir($repoName);
 
@@ -67,12 +69,13 @@ function addUpstreamRemote($repoName, $index, $useHttps) {
     chdir(dirname(__DIR__));
 }
 
-function isHttpsClone($remote) {
+function isHttpsClone(string $remote): bool
+{
 	$pattern = '/\s*Fetch URL:\s+https:\/\//';
-	return preg_match($pattern, $remote);
+	return (bool) preg_match($pattern, $remote);
 }
 
-function installViaComposer($repoName)
+function installViaComposer(string $repoName): void
 {
     $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . $repoName;
     chdir($path);
