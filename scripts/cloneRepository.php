@@ -7,10 +7,10 @@ $path = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR);
 chdir($path);
 
 echo "Preparing the submodules\n";
-echo `git submodule init`;
-echo `git submodule update`;
+system('git submodule init');
+system('git submodule update');
 
-$remoteString = `git remote show origin`;
+$remoteString = shell_exec('git remote show origin');
 $useHttps = isHttpsClone($remoteString);
 
 $gitUsername = getGitUsername($remoteString, $useHttps);
