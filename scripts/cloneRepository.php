@@ -20,6 +20,8 @@ array_walk($repositoryToClone, 'cloneRepository', [$gitUsername, $useHttps]);
 array_walk($repositoryToClone, 'addUpstreamRemote', $useHttps);
 array_walk($repositoryToClone, 'installViaComposer');
 
+echo "Installing dev dependencies for joindin-vm\n";
+system('composer install');
 
 function getGitUsername(string $remoteString, bool $useHttps): string
 {
