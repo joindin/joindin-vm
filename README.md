@@ -18,9 +18,7 @@ by its terms.
 
     - VirtualBox and the VirtualBox Extension Pack (https://www.virtualbox.org/) (version 6.0 or later)
     - Vagrant (http://vagrantup.com/) version 2.x+
-        - Recommended plugins:
-            - vagrant-hostsupdater
-            - vagrant-vbguest (if using VirtualBox)
+      - Recommended plugin: [vagrant-hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)
     - Composer (https://getcomposer.org/)
 
 1. Make your own github fork of the following joind.in repositories:
