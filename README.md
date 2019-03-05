@@ -282,7 +282,6 @@ For example, using the custom string `example`, you can run these commands to ex
 
 * api : `ngrok -subdomain apiexample dev.joind.in:80`
 * web2: `ngrok -subdomain web2example dev.joind.in:80`
-* web1: `ngrok -subdomain web1example dev.joind.in:80`
 
 Therefore, running `ngrok -subdomain web2example dev.joind.in:80` will enable anyone on the Internet to access your development version of web2 at http://web2example.ngrok.com.
 
