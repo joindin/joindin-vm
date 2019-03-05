@@ -59,8 +59,8 @@ by its terms.
     php vendor/bin/homestead make
     ```
 
-    This copies the `Homestead.yaml.example` file to `Homestead.yaml` (which is ignored from VCS) that has computer 
-    specific paths configured for the joind.in repositories. 
+    This copies the `Homestead.yaml.example` file to `Homestead.yaml` (which is ignored from VCS) that has computer
+    specific paths configured for the joind.in repositories.
 
 1. Start the VM
 
@@ -96,7 +96,7 @@ by its terms.
     - For the legacy site: http://legacy.dev.joind.in/
     - For the API: http://api.dev.joind.in/
 
-1. You can log to joind.in test site with those credentials for an admin account:
+1. You can log in to the joind.in test site with these credentials for an admin account:
     - Username: imaadmin
     - Password: password
 
