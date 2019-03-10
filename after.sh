@@ -14,10 +14,10 @@ mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO 'joindin'@'0.0.0
 mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO 'joindin'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;"
 
 # Run migrations
-~/joindin/joindin-api/scripts/patchdb.sh -t ~/joindin/joindin-api -d joindin -u homestead -p secret -i
+~/joindin-vm/joindin-api/scripts/patchdb.sh -t ~/joindin-vm/joindin-api -d joindin -u homestead -p secret -i
 
 # Import dev DB
-php ~/joindin/joindin-api/tools/dbgen/generate.php | mysql -u homestead -psecret joindin
+php ~/joindin-vm/joindin-api/tools/dbgen/generate.php | mysql -u homestead -psecret joindin
 
 ## Install server applications
 

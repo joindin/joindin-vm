@@ -9,8 +9,6 @@ folders:
   - map: /Full/Path/To/joindin-vm
     to: /home/vagrant/joindin-vm
 sites:
-  - map: legacy.dev.joind.in
-    to: /home/vagrant/joindin-vm/joindin-legacy/src
   - map: api.dev.joind.in
     to: /home/vagrant/joindin-vm/joindin-api/src/public
   - map: dev.joind.in

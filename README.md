@@ -23,7 +23,6 @@ by its terms.
 
 1. Make your own github fork of the following joind.in repositories:
 
-    - [joindin-legacy](https://github.com/joindin/joindin-legacy)
     - [joindin-api](https://github.com/joindin/joindin-api)
     - [joindin-web2](https://github.com/joindin/joindin-web2)
     - [joindin-vm](https://github.com/joindin/joindin-vm)
@@ -50,7 +49,7 @@ by its terms.
     ```
 
     If you are getting Git and PHP warnings and you have previously forked joind.in before the introduction of web2,
-    make sure that your fork of `joindin-legacy` is not called `joind.in`.
+    you can safely remove your forks of `joindin-legacy` and the even older `joind.in`.
 
 1. Execute the Homestead `make` command:
 
@@ -76,24 +75,23 @@ by its terms.
     If you are on Linux, run this:
 
     ```sh
-    (echo ; echo "192.168.10.10 dev.joind.in api.dev.joind.in legacy.dev.joind.in") | sudo tee -a /etc/hosts
+    (echo ; echo "192.168.10.10 dev.joind.in api.dev.joind.in") | sudo tee -a /etc/hosts
     ```
 
     If you are on macOS, run this:
 
     ```sh
-    echo "192.168.10.10 dev.joind.in api.dev.joind.in legacy.dev.joind.in" | sudo tee -a /etc/hosts
+    echo "192.168.10.10 dev.joind.in api.dev.joind.in" | sudo tee -a /etc/hosts
     ```
 
     If you are on Windows, run this on the cmd line
 
     ```bat
-    echo 192.168.10.10 dev.joind.in api.dev.joind.in legacy.dev.joind.in >> %SYSTEMDRIVE%\Windows\System32\Drivers\Etc\Hosts
+    echo 192.168.10.10 dev.joind.in api.dev.joind.in >> %SYSTEMDRIVE%\Windows\System32\Drivers\Etc\Hosts
     ```
 
 1. Browse to the sites
     - For the joind.in site: http://dev.joind.in/
-    - For the legacy site: http://legacy.dev.joind.in/
     - For the API: http://api.dev.joind.in/
 
 1. You can log in to the joind.in test site with these credentials for an admin account:
@@ -161,12 +159,6 @@ To install the testing tools in the VM
 
     ```sh
     cd /vagrant/joindin-api && phing
-    ```
-
-1. Run the joindin-legacy tests with this command from inside the VM
-
-    ```sh
-    cd /vagrant/joindin-legacy && phing
     ```
 
 ## Troubleshooting
