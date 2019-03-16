@@ -41,7 +41,7 @@ by its terms.
     git clone git@github.com:defunkt/joindin-vm.git --recursive
     ```
 
-1. Execute the script that will clone the other 3 repository from your forks
+1. Execute the script that will clone the other 2 repositories from your forks
 
     ```sh
     cd joindin-vm
