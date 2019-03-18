@@ -2,7 +2,7 @@
 <?php
 declare(strict_types=1);
 
-$repositoryToUpdate = ['joindin-web2', 'joindin-api', 'joindin-legacy'];
+$repositoryToUpdate = ['joindin-api', 'joindin-web2'];
 
 $path = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR);
 chdir($path);
