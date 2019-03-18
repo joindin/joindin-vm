@@ -22,6 +22,9 @@ array_walk($repositoryToClone, 'installViaComposer');
 
 echo "Installing dev dependencies for joindin-vm\n";
 system('composer install');
+echo "Updating configuration files with defaults\n";
+copyApiConfigs($repositoryToClone[0]);
+copyWebConfigs($repositoryToClone[1]);
 
 function getGitUsername(string $remoteString, bool $useHttps): string
 {
@@ -92,4 +95,31 @@ function installViaComposer(string $repoName): void
 
     echo $remoteCommand. "\n";
     system($remoteCommand);
+}
+
+function copyApiConfigs(string $repoName): void
+{
+	$path = dirname(__DIR__) . DIRECTORY_SEPARATOR . $repoName;
+    chdir($path);
+
+    if (!file_exists('src/config.php')) {
+		echo 'Creating default API config' . PHP_EOL;
+		system("cp $path/src/config.php.dist $path/src/config.php");
+	}
+
+	if (!file_exists('src/database.php')) {
+		echo 'Creating default API database config' . PHP_EOL;
+		system("cp $path/src/database.php.dist $path/src/database.php");
+	}
+}
+
+function copyWebConfigs(string $repoName): void
+{
+	$path = dirname(__DIR__) . DIRECTORY_SEPARATOR . $repoName;
+    chdir($path);
+
+    if (!file_exists('config/config.php')) {
+		echo 'Creating default Web config' . PHP_EOL;
+		system("cp $path/config/config.php.dist $path/config/config.php");
+	}
 }
