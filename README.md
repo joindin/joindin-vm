@@ -163,24 +163,6 @@ To install the testing tools in the VM
 
 ## Troubleshooting
 
-### Problem with the guest additions version
-
-If you get a warning about a mismatch between your version of the guest addition and the one in the VM. You can make sure that the guest additions in the VM are always up to date with this command:
-
-```sh
-vagrant plugin install vagrant-vbguest
-```
-
-If Vagrant complains that the command plugin does not exist, it's because your version of Vagrant is too old. You might need to upgrade it for the VM to work correctly.
-
-### Vagrant Provisioning Not Executed
-
-On the latest Vagrant version, sometimes Vagrant stops before running Puppet. If if happens, you can run it manually.
-
-```sh
-vagrant provision
-```
-
 ### Configuration is missing
 
 Update the config files:
