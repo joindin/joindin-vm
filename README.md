@@ -188,8 +188,7 @@ Update the config files:
 ```sh
 you@you> vagrant ssh
 vagrant@vm> cd ~/joindin-vm
-vagrant@vm> chmod +x ./scripts/fixConfig.sh
-vagrant@vm> ./scripts/fixConfig.sh
+vagrant@vm> sh scripts/fixConfig.sh
 ```
 
 ## Mailhog
