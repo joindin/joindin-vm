@@ -138,6 +138,19 @@ by its terms.
 
 ## Troubleshooting
 
+### Slim Application Error
+
+Recreate the config files:
+
+```sh
+cd joindin-api/src
+cp config.php.dist config.php
+cp database.php.dist database.php
+
+cd ../../joindin-web2/src
+cp config.php.dist config.php
+```
+
 ### Configuration is missing
 
 Update the config files:
