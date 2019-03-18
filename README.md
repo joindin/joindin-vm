@@ -163,14 +163,6 @@ To install the testing tools in the VM
 
 ## Troubleshooting
 
-### Box stored with the wrong format
-
-If you get this error:
-
-    "The box 'centos-62-64-puppet' is still stored on disk in the Vagrant 1.0.x format. This box must be upgraded in order to work properly with this version of Vagrant.".
-
-You can fix it by running the command `vagrant box repackage centos-62-64-puppet virtualbox` and executing `vagrant up` again.
-
 ### Problem with the guest additions version
 
 If you get a warning about a mismatch between your version of the guest addition and the one in the VM. You can make sure that the guest additions in the VM are always up to date with this command:
