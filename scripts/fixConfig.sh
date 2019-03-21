@@ -1,8 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-sed -i 's/https:\/\/m.joind.in/http:\/\/dev.joind.in/' /vagrant/joindin-api/src/config.php
-sed -i 's/https:\/\/api.joind.in/http:\/\/api.dev.joind.in/' /vagrant/joindin-web2/config/config.php
-sed -i 's/https:\/\/joind.in\//http:\/\/legacy.joind.in\//' /vagrant/joindin-legacy/src/system/application/config/config.php
-sed -i 's/https:\/\/api.joind.in\//http:\/\/api.dev.joind.in\//' /vagrant/joindin-legacy/src/system/application/config/config.php
-sed -i "s/^\$config\['token_dir'].*/\$config\['token_dir'\] = '\/tmp\/ctokens';/" /vagrant/joindin-legacy/src/system/application/config/config.php
+VAGRANT_DIR=$PWD;
 
+sed -i 's/https:\/\/m.joind.in/http:\/\/dev.joind.in/' $VAGRANT_DIR/joindin-api/src/config.php
+sed -i 's/https:\/\/api.joind.in/http:\/\/api.dev.joind.in/' $VAGRANT_DIR/joindin-web2/config/config.php

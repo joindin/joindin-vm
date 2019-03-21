@@ -1,9 +1,10 @@
 #!/usr/bin/env php
 <?php
+declare(strict_types=1);
 
-$repositoryToUpdate = array('joindin-web2', 'joindin-api', 'joindin-legacy');
+$repositoryToUpdate = ['joindin-api', 'joindin-web2'];
 
-$path = realpath(__DIR__ . '/../');
+$path = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR);
 chdir($path);
 
 system('git pull upstream master');
@@ -11,20 +12,24 @@ system('git pull upstream master');
 system('git submodule init');
 system('git submodule update');
 
+echo "Installing dev dependencies for joindin-vm\n";
+system('composer install');
+
 array_walk($repositoryToUpdate, 'updateRepository');
 array_walk($repositoryToUpdate, 'installViaComposer');
 
-function updateRepository($repoName) {
+function updateRepository(string $repoName): void
+{
 	echo "Updating repo {$repoName}\n";
 	chdir($repoName);
-	system("git pull upstream master");
-	chdir('../');
+	system('git pull upstream master');
+	chdir(dirname(__DIR__));
 }
 
-function installViaComposer($repoName)
+function installViaComposer(string $repoName): void
 {
-    $windowsAndNixHappyPath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $repoName;
-    chdir($windowsAndNixHappyPath);
+    $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . $repoName;
+    chdir($path);
 
     if (!file_exists('composer.lock')) {
         return;

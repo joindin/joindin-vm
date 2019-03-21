@@ -1,27 +1,33 @@
 #!/usr/bin/env php
 <?php
+declare(strict_types=1);
 
-$repositoryToClone = array('joindin-legacy', 'joindin-api', 'joindin-web2');
+$repositoryToClone = ['joindin-api', 'joindin-web2'];
 
-$path = realpath(__DIR__ . '/../');
+$path = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR);
 chdir($path);
 
 echo "Preparing the submodules\n";
-echo `git submodule init`;
-echo `git submodule update`;
+system('git submodule init');
+system('git submodule update');
 
-$remoteString = `git remote show origin`;
+$remoteString = shell_exec('git remote show origin');
 $useHttps = isHttpsClone($remoteString);
 
 $gitUsername = getGitUsername($remoteString, $useHttps);
 
-array_walk($repositoryToClone, 'cloneRepository', array($gitUsername, $useHttps));
+array_walk($repositoryToClone, 'cloneRepository', [$gitUsername, $useHttps]);
 array_walk($repositoryToClone, 'addUpstreamRemote', $useHttps);
 array_walk($repositoryToClone, 'installViaComposer');
 
+echo "Installing dev dependencies for joindin-vm\n";
+system('composer install');
+echo "Updating configuration files with defaults\n";
+copyApiConfigs($repositoryToClone[0]);
+copyWebConfigs($repositoryToClone[1]);
 
-function getGitUsername($remoteString, $useHttps) {
-
+function getGitUsername(string $remoteString, bool $useHttps): string
+{
 	if ($useHttps) {
 		$pattern = '/\s*Fetch URL:\s+https:\/\/github\.com\/(.+)\//';
 	} else {
@@ -29,16 +35,16 @@ function getGitUsername($remoteString, $useHttps) {
 	}
 
 	$found = preg_match($pattern, $remoteString, $matches);
-	if (!$found || 2 != count($matches)) {
+	if (!$found || 2 !== count($matches)) {
 		die('Failed to extract the username from git origin');
 	}
 
 	return $matches[1];
 }
 
-function cloneRepository($repoName, $index, $values) {
-	$gitUsername = $values[0];
-	$useHttps = $values[1];
+function cloneRepository(string $repoName, int $index, array $values): void
+{
+	[$gitUsername, $useHttps] = $values;
 
 	echo "Cloning {$repoName}\n";
 
@@ -52,7 +58,8 @@ function cloneRepository($repoName, $index, $values) {
 	system($cloneCommand);
 }
 
-function addUpstreamRemote($repoName, $index, $useHttps) {
+function addUpstreamRemote(string $repoName, int $index, bool $useHttps): void
+{
 	echo "Adding upstream remote to {$repoName}\n";
 	chdir($repoName);
 
@@ -64,18 +71,19 @@ function addUpstreamRemote($repoName, $index, $useHttps) {
 
 	echo $remoteCommand. "\n";
 	system($remoteCommand);
-	chdir('../');
+    chdir(dirname(__DIR__));
 }
 
-function isHttpsClone($remote) {
-	$pattern = '/\s*Fetch URL:\s+https:\/\//';
-	return preg_match($pattern, $remote);
-}
-
-function installViaComposer($repoName)
+function isHttpsClone(string $remote): bool
 {
-    $windowsAndNixHappyPath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $repoName;
-    chdir($windowsAndNixHappyPath);
+	$pattern = '/\s*Fetch URL:\s+https:\/\//';
+	return (bool) preg_match($pattern, $remote);
+}
+
+function installViaComposer(string $repoName): void
+{
+    $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . $repoName;
+    chdir($path);
 
     if (!file_exists('composer.lock')) {
         return;
@@ -87,4 +95,31 @@ function installViaComposer($repoName)
 
     echo $remoteCommand. "\n";
     system($remoteCommand);
+}
+
+function copyApiConfigs(string $repoName): void
+{
+	$path = dirname(__DIR__) . DIRECTORY_SEPARATOR . $repoName;
+    chdir($path);
+
+    if (!file_exists('src/config.php')) {
+		echo 'Creating default API config' . PHP_EOL;
+		system("cp $path/src/config.php.dist $path/src/config.php");
+	}
+
+	if (!file_exists('src/database.php')) {
+		echo 'Creating default API database config' . PHP_EOL;
+		system("cp $path/src/database.php.dist $path/src/database.php");
+	}
+}
+
+function copyWebConfigs(string $repoName): void
+{
+	$path = dirname(__DIR__) . DIRECTORY_SEPARATOR . $repoName;
+    chdir($path);
+
+    if (!file_exists('config/config.php')) {
+		echo 'Creating default Web config' . PHP_EOL;
+		system("cp $path/config/config.php.dist $path/config/config.php");
+	}
 }

@@ -1,0 +1,15 @@
+{
+    "name": "joindin/joindin-vm",
+    "description": "The dev VM for joindin",
+    "license": "BSD-3-Clause",
+    "type": "project",
+    "config": {
+        "platform": {
+            "php": "7.3.2"
+        }
+    },
+    "require": {
+        "laravel/homestead": "^8.1"
+    },
+    "require-dev": {}
+}

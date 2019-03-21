@@ -8,9 +8,9 @@ nbproject/
 .idea
 .DS_Store
 .vagrant
-joindin-legacy/
 joindin-api/
 joindin-web2/
 Guardfile
 .vagrant.v*
-puppet/hieradata/common.yaml
+/vendor/
+Homestead.yaml

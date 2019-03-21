@@ -1,42 +1,49 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant.configure("2") do |config|
+require 'json'
+require 'yaml'
 
-  # We define one box (joindin), but
-  config.vm.define :joindin do |ji_config|
+VAGRANTFILE_API_VERSION ||= "2"
+confDir = $confDir ||= File.expand_path("vendor/laravel/homestead", File.dirname(__FILE__))
 
-    # The original base box used to create joindin/development was 'puphpet/debian75-x64'
-    ji_config.vm.box = 'joindin/development'
+homesteadYamlPath = File.expand_path("Homestead.yaml", File.dirname(__FILE__))
+homesteadJsonPath = File.expand_path("Homestead.json", File.dirname(__FILE__))
+afterScriptPath = "after.sh"
+customizationScriptPath = "user-customizations.sh"
+aliasesPath = "aliases"
 
-    ji_config.vm.host_name = "dev.joind.in"
-    if Vagrant.has_plugin?('vagrant-hostsupdater')
-      ji_config.hostsupdater.aliases = ["legacy.dev.joind.in", "api.dev.joind.in"]
+require File.expand_path(confDir + '/scripts/homestead.rb')
+
+Vagrant.require_version '>= 1.9.0'
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    if File.exist? aliasesPath then
+        config.vm.provision "file", source: aliasesPath, destination: "/tmp/bash_aliases"
+        config.vm.provision "shell" do |s|
+            s.inline = "awk '{ sub(\"\r$\", \"\"); print }' /tmp/bash_aliases > /home/vagrant/.bash_aliases"
+        end
     end
 
-    # Forward a port from the guest to the host, which allows for outside
-    # computers to access the VM, whereas host only networking does not.
-    ji_config.vm.network :private_network, ip: "10.223.175.44"
-
-    # Share an additional folder to the guest VM. The first argument is
-    # an identifier, the second is the path on the guest to mount the
-    # folder, and the third is the path on the host to the actual folder.
-    # config.vm.share_folder "v-data", "/vagrant_data", "../data"
-
-    # Use :gui for showing a display for easy debugging of vagrant
-    #ji_config.vm.boot_mode = :gui
-
-    ji_config.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "puppet/manifests"
-      puppet.module_path = "puppet/modules"
-      puppet.manifest_file = "joindin.pp"
-      puppet.options = [
-        # '--verbose',
-        # '--debug',
-        # '--graph',
-        # '--graphdir=/vagrant/puppet/graphs'
-        "--hiera_config /vagrant/puppet/hiera.yaml"
-      ]
+    if File.exist? homesteadYamlPath then
+        settings = YAML::load(File.read(homesteadYamlPath))
+    elsif File.exist? homesteadJsonPath then
+        settings = JSON.parse(File.read(homesteadJsonPath))
+    else
+        abort "Homestead settings file not found in " + File.dirname(__FILE__)
     end
-  end
+
+    Homestead.configure(config, settings)
+
+    if File.exist? afterScriptPath then
+        config.vm.provision "shell", path: afterScriptPath, privileged: false, keep_color: true
+    end
+
+    if File.exist? customizationScriptPath then
+        config.vm.provision "shell", path: customizationScriptPath, privileged: false, keep_color: true
+    end
+
+    if defined? VagrantPlugins::HostsUpdater
+        config.hostsupdater.aliases = settings['sites'].map { |site| site['map'] }
+    end
 end

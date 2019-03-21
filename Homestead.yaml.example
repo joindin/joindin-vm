@@ -1,0 +1,18 @@
+ip: 192.168.10.10
+memory: 2048
+cpus: 1
+provider: virtualbox
+authorize: ~/.ssh/id_rsa.pub
+keys:
+  - ~/.ssh/id_rsa
+folders:
+  - map: /Full/Path/To/joindin-vm
+    to: /home/vagrant/joindin-vm
+sites:
+  - map: api.dev.joind.in
+    to: /home/vagrant/joindin-vm/joindin-api/src/public
+  - map: dev.joind.in
+    to: /home/vagrant/joindin-vm/joindin-web2/web
+databases:
+  - joindin
+name: joindin-vm
