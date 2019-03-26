@@ -51,10 +51,10 @@ by its terms.
     If you are getting Git and PHP warnings and you have previously forked joind.in before the introduction of web2,
     you can safely remove your forks of `joindin-legacy` and the even older `joind.in`.
 
-1. Execute the Homestead `make` command:
+1. Run Composer Install and the Homestead `make` command:
 
     ```sh
-    cd joindin-vm
+    composer install
     php vendor/bin/homestead make
     ```
 
@@ -199,33 +199,31 @@ If testing from the command-line and not a browser:
 
 If you are at an event with a slow connection it's possible to package the box and copy it on a usb key. This way others don't need to download it.
 
-### Download the box before the event
+### Repackage the box before the event
 
-You can download the box from [http://cdn.19ft.com/joindin-development.2.1.1.box](http://cdn.19ft.com/joindin-development.2.1.1.box). Then copy it on a usb key and share it at the event as per the instructions for using the packaged box.
-
-### Package the box
-
-If you're already at the event and can't download the box, someone who already has it can package it:
-
-1. cd into the joindin-vm directory
-2. Package the vagrant box
+Build the environment on your local machine and then run the command:
 
     ```sh
-    vagrant package
+    vagrant box repackage laravel/homestead virtualbox 7.1.0
     ```
 
-3. Copy the generated file to a usb key.
+Then copy the resulting `package.box` file to a usb key and share it at the event as per the instructions for using the packaged box.
 
 ### Using the packaged box
 
 1. Copy the box file on your machine
-2. Import the box
+1. Import the box
 
     ```sh
-    vagrant box add joindin/development path/to/file
+    vagrant box add joindindev path/to/package.box
     ```
 
-3. Follow the Getting Started instructions
+1. Follow the Getting Started instructions but before you run `vagrant up` and the following line to `Homstead.yaml`:
+    
+    ```yaml
+    box: joindindev
+    ```
+1. Continue where you left of with `vagrant up` "Start the VM".
 
 ## Exposing to the web via ngrok
 
