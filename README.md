@@ -207,7 +207,7 @@ Build the environment on your local machine and then run the command:
     vagrant box repackage laravel/homestead virtualbox 7.1.0
     ```
 
-Then copy the resulting `package.box` file to a usb key and share it at the event as per the instructions for using the packaged box.
+Then copy the resulting `package.box` file to a USB key and share it at the event as per the instructions for using the packaged box.
 
 ### Using the packaged box
 
