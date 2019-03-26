@@ -223,6 +223,13 @@ Then copy the resulting `package.box` file to a usb key and share it at the even
     ```yaml
     box: joindindev
     ```
+
+1. Open `vendor/laravel/homestead/scripts/homestead.rb` and comment out the following line:
+
+    ```ruby
+    config.vm.box_version = settings['version'] ||= '>= 7.0.0'
+    ```
+
 1. Continue where you left of with `vagrant up` "Start the VM".
 
 ## Exposing to the web via ngrok
