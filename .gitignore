@@ -14,3 +14,4 @@ Guardfile
 .vagrant.v*
 /vendor/
 Homestead.yaml
+package.box
