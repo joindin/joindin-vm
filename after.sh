@@ -22,6 +22,7 @@ php ~/joindin-vm/joindin-api/tools/dbgen/generate.php | mysql -u homestead -psec
 ## Install server applications
 
 # Install Wireshark
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y update
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y \
     -o Dpkg::Options::="--force-confdef" \
     -o Dpkg::Options::="--force-confold" \
