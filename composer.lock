@@ -4,27 +4,27 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eedc15e51320c71421b82cd74e886d5f",
+    "content-hash": "144f9eb58890796ac1fd718e1a11780f",
     "packages": [
         {
             "name": "laravel/homestead",
-            "version": "v8.2.0",
+            "version": "v9.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/homestead.git",
-                "reference": "68388101a1364019c1fa44ff427be43b5ffda90f"
+                "reference": "0add54057b5a4f8a4adf78a6c382131257aec090"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/68388101a1364019c1fa44ff427be43b5ffda90f",
-                "reference": "68388101a1364019c1fa44ff427be43b5ffda90f",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/0add54057b5a4f8a4adf78a6c382131257aec090",
+                "reference": "0add54057b5a4f8a4adf78a6c382131257aec090",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1",
-                "symfony/console": "~4.0",
-                "symfony/process": "~4.0",
-                "symfony/yaml": "~4.0"
+                "symfony/console": "~3.0||~4.0",
+                "symfony/process": "~3.0||~4.0",
+                "symfony/yaml": "~3.0||~4.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
@@ -54,7 +54,7 @@
                 }
             ],
             "description": "A virtual machine for web artisans.",
-            "time": "2019-03-05T22:31:19+00:00"
+            "time": "2019-07-22T17:55:23+00:00"
         },
         {
             "name": "symfony/console",
