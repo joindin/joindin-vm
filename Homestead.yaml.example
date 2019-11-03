@@ -10,7 +10,7 @@ folders:
     to: /home/vagrant/joindin-vm
 sites:
   - map: api.dev.joind.in
-    to: /home/vagrant/joindin-vm/joindin-api/src/public
+    to: /home/vagrant/joindin-vm/joindin-api/public
   - map: dev.joind.in
     to: /home/vagrant/joindin-vm/joindin-web2/web
 databases:
