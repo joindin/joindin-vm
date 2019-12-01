@@ -11,8 +11,10 @@ folders:
 sites:
   - map: api.dev.joind.in
     to: /home/vagrant/joindin-vm/joindin-api/public
+    php: "7.3"
   - map: dev.joind.in
     to: /home/vagrant/joindin-vm/joindin-web2/web
+    php: "7.3"
 databases:
   - joindin
 name: joindin-vm

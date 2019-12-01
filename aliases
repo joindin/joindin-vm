@@ -5,6 +5,7 @@ alias h='cd ~'
 alias c='clear'
 alias art=artisan
 
+alias codecept='vendor/bin/codecept'
 alias phpspec='vendor/bin/phpspec'
 alias phpunit='vendor/bin/phpunit'
 alias serve=serve-laravel
@@ -26,22 +27,16 @@ function dusk() {
     php artisan dusk "$@"
 }
 
-function php71() {
-    sudo update-alternatives --set php /usr/bin/php7.1
-    sudo update-alternatives --set php-config /usr/bin/php-config7.1
-    sudo update-alternatives --set phpize /usr/bin/phpize7.1
-}
-
-function php72() {
-    sudo update-alternatives --set php /usr/bin/php7.2
-    sudo update-alternatives --set php-config /usr/bin/php-config7.2
-    sudo update-alternatives --set phpize /usr/bin/phpize7.2
-}
-
 function php73() {
     sudo update-alternatives --set php /usr/bin/php7.3
     sudo update-alternatives --set php-config /usr/bin/php-config7.3
     sudo update-alternatives --set phpize /usr/bin/phpize7.3
+}
+
+function php74() {
+    sudo update-alternatives --set php /usr/bin/php7.4
+    sudo update-alternatives --set php-config /usr/bin/php-config7.4
+    sudo update-alternatives --set phpize /usr/bin/phpize7.4
 }
 
 function serve-apache() {
@@ -49,7 +44,7 @@ function serve-apache() {
     then
         sudo bash /vagrant/vendor/laravel/homestead/scripts/create-certificate.sh "$1"
         sudo dos2unix /vagrant/vendor/laravel/homestead/scripts/serve-apache.sh
-        sudo bash /vagrant/vendor/laravel/homestead/scripts/serve-apache.sh "$1" "$2" 80 443 "${3:-7.1}"
+        sudo bash /vagrant/vendor/laravel/homestead/scripts/serve-apache.sh "$1" "$2" 80 443 "${3:-7.4}"
     else
         echo "Error: missing required parameters."
         echo "Usage: "
@@ -62,7 +57,7 @@ function serve-laravel() {
     then
         sudo bash /vagrant/vendor/laravel/homestead/scripts/create-certificate.sh "$1"
         sudo dos2unix /vagrant/vendor/laravel/homestead/scripts/serve-laravel.sh
-        sudo bash /vagrant/vendor/laravel/homestead/scripts/serve-laravel.sh "$1" "$2" 80 443 "${3:-7.1}"
+        sudo bash /vagrant/vendor/laravel/homestead/scripts/serve-laravel.sh "$1" "$2" 80 443 "${3:-7.4}"
     else
         echo "Error: missing required parameters."
         echo "Usage: "
@@ -74,7 +69,7 @@ function serve-proxy() {
     if [[ "$1" && "$2" ]]
     then
         sudo dos2unix /vagrant/vendor/laravel/homestead/scripts/serve-proxy.sh
-        sudo bash /vagrant/vendor/laravel/homestead/scripts/serve-proxy.sh "$1" "$2" 80 443 "${3:-7.1}"
+        sudo bash /vagrant/vendor/laravel/homestead/scripts/serve-proxy.sh "$1" "$2" 80 443 "${3:-7.4}"
     else
         echo "Error: missing required parameters."
         echo "Usage: "
