@@ -9,7 +9,7 @@
         }
     },
     "require": {
-        "laravel/homestead": "^9.0"
+        "laravel/homestead": "^10.0"
     },
     "require-dev": {}
 }
